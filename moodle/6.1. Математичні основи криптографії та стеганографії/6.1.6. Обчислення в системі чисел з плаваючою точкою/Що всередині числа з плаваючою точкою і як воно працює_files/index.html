@@ -1,0 +1,834 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Що всередині числа з плаваючою точкою і як воно працює_files</title>
+
+<script>
+if(localStorage.getItem("theme")==="dark"){
+document.documentElement.classList.add("dark")
+}
+</script>
+
+
+<style>
+
+body{
+font-family:Segoe UI, Arial;
+margin:0;
+background:#f4f6fb;
+transition:0.3s;
+padding:20px;
+}
+
+.dark body{
+background:#1e1e1e;
+color:white;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+.topbar{
+position:sticky;
+top:0;
+background:white;
+padding:12px;
+display:flex;
+gap:10px;
+align-items:center;
+flex-wrap:wrap;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+z-index:100;
+}
+
+.dark .topbar{
+background:#2c2c2c;
+}
+
+.btn{
+padding:8px 14px;
+border:none;
+border-radius:8px;
+background:#1976d2;
+color:white;
+cursor:pointer;
+font-size:14px;
+}
+
+.btn:hover{
+background:#0d47a1;
+}
+
+.search{
+padding:10px;
+width:260px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+gap:18px;
+margin-top:20px;
+}
+
+.card{
+display:block;
+background:white;
+padding:18px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+transition:0.2s;
+}
+
+.dark .card{
+background:#2c2c2c;
+}
+
+.card:hover{
+transform:translateY(-3px);
+}
+
+.icon{
+font-size:28px;
+margin-bottom:8px;
+}
+
+.title{
+font-weight:600;
+word-break:break-word;
+}
+
+.progress{
+margin-top:10px;
+font-size:13px;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.star{
+cursor:pointer;
+font-size:18px;
+}
+
+.bar{
+height:8px;
+background:#ddd;
+border-radius:4px;
+margin-bottom:18px;
+margin-top:10px;
+}
+
+.bar-fill{
+height:8px;
+background:#4caf50;
+border-radius:4px;
+width:0%;
+}
+
+</style>
+
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<a class="btn" href="..\..\..\../main.html">🏠 Портал</a>
+<a class="btn" href="..\..\..\../classroom/index.html">📚 Classroom</a>
+<a class="btn" href="..\..\..\../moodle/index.html">🎓 Moodle</a>
+<a class="btn" href="..\..\..\../edki/index.html">📂 ЄДКІ</a>
+
+<button class="btn" onclick="toggleTheme()">🌙 Темна тема</button>
+
+<input id="search" class="search" onkeyup="searchFiles()" placeholder="Пошук по папці...">
+
+</div>
+
+<h1>Що всередині числа з плаваючою точкою і як воно працює files</h1>
+
+
+<div id="progresslabel">Прогрес: 0%</div>
+
+<div class="bar">
+<div id="progressbar" class="bar-fill"></div>
+</div>
+
+
+<div class="grid">
+
+<a class="card" href="../index.html">
+<div class="icon">⬅️</div>
+<div class="title">Назад</div>
+</a>
+
+<div class="card">
+
+<a href="1.gif" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">1.gif</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="1gif" onclick="toggleLearned('1gif')">
+вивчено
+</label>
+
+<span class="star" id="star_1gif" data-id="1gif" onclick="toggleStar('1gif')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="512.webp" target="_blank">
+
+<div class="icon">🖼️</div>
+<div class="title">512.webp</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="512webp" onclick="toggleLearned('512webp')">
+вивчено
+</label>
+
+<span class="star" id="star_512webp" data-id="512webp" onclick="toggleStar('512webp')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="800(1).webp" target="_blank">
+
+<div class="icon">🖼️</div>
+<div class="title">800(1).webp</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="8001webp" onclick="toggleLearned('8001webp')">
+вивчено
+</label>
+
+<span class="star" id="star_8001webp" data-id="8001webp" onclick="toggleStar('8001webp')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="800(2).webp" target="_blank">
+
+<div class="icon">🖼️</div>
+<div class="title">800(2).webp</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="8002webp" onclick="toggleLearned('8002webp')">
+вивчено
+</label>
+
+<span class="star" id="star_8002webp" data-id="8002webp" onclick="toggleStar('8002webp')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="800(3).webp" target="_blank">
+
+<div class="icon">🖼️</div>
+<div class="title">800(3).webp</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="8003webp" onclick="toggleLearned('8003webp')">
+вивчено
+</label>
+
+<span class="star" id="star_8003webp" data-id="8003webp" onclick="toggleStar('8003webp')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="800(4).webp" target="_blank">
+
+<div class="icon">🖼️</div>
+<div class="title">800(4).webp</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="8004webp" onclick="toggleLearned('8004webp')">
+вивчено
+</label>
+
+<span class="star" id="star_8004webp" data-id="8004webp" onclick="toggleStar('8004webp')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="800.webp" target="_blank">
+
+<div class="icon">🖼️</div>
+<div class="title">800.webp</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="800webp" onclick="toggleLearned('800webp')">
+вивчено
+</label>
+
+<span class="star" id="star_800webp" data-id="800webp" onclick="toggleStar('800webp')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="910397485679687" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">910397485679687</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="910397485679687" onclick="toggleLearned('910397485679687')">
+вивчено
+</label>
+
+<span class="star" id="star_910397485679687" data-id="910397485679687" onclick="toggleStar('910397485679687')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="Discussion-81dba832.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">Discussion-81dba832.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="Discussion81dba832css" onclick="toggleLearned('Discussion81dba832css')">
+вивчено
+</label>
+
+<span class="star" id="star_Discussion81dba832css" data-id="Discussion81dba832css" onclick="toggleStar('Discussion81dba832css')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="PostDetails-c9f5aae7.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">PostDetails-c9f5aae7.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="PostDetailsc9f5aae7css" onclick="toggleLearned('PostDetailsc9f5aae7css')">
+вивчено
+</label>
+
+<span class="star" id="star_PostDetailsc9f5aae7css" data-id="PostDetailsc9f5aae7css" onclick="toggleStar('PostDetailsc9f5aae7css')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="bc-v4.min.html" target="_blank">
+
+<div class="icon">🌐</div>
+<div class="title">bc-v4.min.html</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="bcv4minhtml" onclick="toggleLearned('bcv4minhtml')">
+вивчено
+</label>
+
+<span class="star" id="star_bcv4minhtml" data-id="bcv4minhtml" onclick="toggleStar('bcv4minhtml')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="cc.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">cc.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="ccjs_" onclick="toggleLearned('ccjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_ccjs_" data-id="ccjs_" onclick="toggleStar('ccjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="client-6e87053d.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">client-6e87053d.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="client6e87053dcss" onclick="toggleLearned('client6e87053dcss')">
+вивчено
+</label>
+
+<span class="star" id="star_client6e87053dcss" data-id="client6e87053dcss" onclick="toggleStar('client6e87053dcss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="client.bb269d56.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">client.bb269d56.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="clientbb269d56js_" onclick="toggleLearned('clientbb269d56js_')">
+вивчено
+</label>
+
+<span class="star" id="star_clientbb269d56js_" data-id="clientbb269d56js_" onclick="toggleStar('clientbb269d56js_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="fbevents.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">fbevents.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="fbeventsjs_" onclick="toggleLearned('fbeventsjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_fbeventsjs_" data-id="fbeventsjs_" onclick="toggleStar('fbeventsjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="js" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">js</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="js" onclick="toggleLearned('js')">
+вивчено
+</label>
+
+<span class="star" id="star_js" data-id="js" onclick="toggleStar('js')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="js(1)" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">js(1)</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="js1" onclick="toggleLearned('js1')">
+вивчено
+</label>
+
+<span class="star" id="star_js1" data-id="js1" onclick="toggleStar('js1')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="logo-jr-full.svg" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">logo-jr-full.svg</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="logojrfullsvg" onclick="toggleLearned('logojrfullsvg')">
+вивчено
+</label>
+
+<span class="star" id="star_logojrfullsvg" data-id="logojrfullsvg" onclick="toggleStar('logojrfullsvg')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="mastercard.svg" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">mastercard.svg</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="mastercardsvg" onclick="toggleLearned('mastercardsvg')">
+вивчено
+</label>
+
+<span class="star" id="star_mastercardsvg" data-id="mastercardsvg" onclick="toggleStar('mastercardsvg')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="mermaid-51626dbf.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">mermaid-51626dbf.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="mermaid51626dbfcss" onclick="toggleLearned('mermaid51626dbfcss')">
+вивчено
+</label>
+
+<span class="star" id="star_mermaid51626dbfcss" data-id="mermaid51626dbfcss" onclick="toggleStar('mermaid51626dbfcss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="saved_resource.html" target="_blank">
+
+<div class="icon">🌐</div>
+<div class="title">saved resource.html</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="saved_resourcehtml" onclick="toggleLearned('saved_resourcehtml')">
+вивчено
+</label>
+
+<span class="star" id="star_saved_resourcehtml" data-id="saved_resourcehtml" onclick="toggleStar('saved_resourcehtml')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="ua(1).png" target="_blank">
+
+<div class="icon">🖼️</div>
+<div class="title">ua(1).png</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="ua1png" onclick="toggleLearned('ua1png')">
+вивчено
+</label>
+
+<span class="star" id="star_ua1png" data-id="ua1png" onclick="toggleStar('ua1png')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="ua.png" target="_blank">
+
+<div class="icon">🖼️</div>
+<div class="title">ua.png</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="uapng" onclick="toggleLearned('uapng')">
+вивчено
+</label>
+
+<span class="star" id="star_uapng" data-id="uapng" onclick="toggleStar('uapng')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="uc.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">uc.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="ucjs_" onclick="toggleLearned('ucjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_ucjs_" data-id="ucjs_" onclick="toggleStar('ucjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a href="visa.svg" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">visa.svg</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="visasvg" onclick="toggleLearned('visasvg')">
+вивчено
+</label>
+
+<span class="star" id="star_visasvg" data-id="visasvg" onclick="toggleStar('visasvg')">☆</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+function toggleTheme(){
+if(document.documentElement.classList.contains("dark")){
+document.documentElement.classList.remove("dark")
+localStorage.setItem("theme","light")
+}else{
+document.documentElement.classList.add("dark")
+localStorage.setItem("theme","dark")
+}
+}
+
+function searchFiles(){
+
+let input=document.getElementById("search").value.toLowerCase()
+
+let cards=document.getElementsByClassName("card")
+
+for(let i=0;i<cards.length;i++){
+
+let text=cards[i].innerText.toLowerCase()
+
+if(text.includes(input))
+cards[i].style.display=""
+else
+cards[i].style.display="none"
+
+}
+
+}
+
+function toggleLearned(id){
+
+let box=document.getElementById(id)
+
+if(box.checked)
+localStorage.setItem("done_"+id,"1")
+else
+localStorage.removeItem("done_"+id)
+
+updateProgress()
+
+}
+
+function toggleStar(id){
+
+let star=document.getElementById("star_"+id)
+
+if(localStorage.getItem("star_"+id)){
+localStorage.removeItem("star_"+id)
+star.innerText="☆"
+}else{
+localStorage.setItem("star_"+id,"1")
+star.innerText="⭐"
+}
+
+}
+
+function loadState(){
+
+document.querySelectorAll(".learnbox").forEach(box=>{
+if(localStorage.getItem("done_"+box.id))
+box.checked=true
+})
+
+document.querySelectorAll(".star").forEach(s=>{
+let id=s.dataset.id
+if(localStorage.getItem("star_"+id))
+s.innerText="⭐"
+})
+
+updateProgress()
+
+}
+
+function updateProgress(){
+
+let boxes=document.querySelectorAll(".learnbox")
+
+let done=0
+
+boxes.forEach(b=>{
+if(localStorage.getItem("done_"+b.id))
+done++
+})
+
+let percent=0
+
+if(boxes.length>0)
+percent=Math.round(done/boxes.length*100)
+
+let bar=document.getElementById("progressbar")
+
+if(bar) bar.style.width=percent+"%"
+
+let label=document.getElementById("progresslabel")
+
+if(label) label.innerText="Прогрес: "+percent+"%"
+
+}
+
+window.onload=loadState
+
+</script>
+
+
+</body>
+</html>

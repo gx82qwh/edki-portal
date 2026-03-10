@@ -1,0 +1,405 @@
+
+function galleryTopInit() {
+    var galleryTops = document.querySelectorAll('.gallery-top:not(.gallery-top--processed)');
+
+    galleryTops.forEach(function (galleryTopEl) {
+        galleryTopEl.classList.add('gallery-top--processed');
+
+        var currentThumbs = galleryTopEl.closest('.media__gallery').querySelector('.gallery-thumbs'),
+            currentCounter = galleryTopEl.closest('.media__gallery').querySelector('.photo-counter'),
+            currentGalleryExpand = galleryTopEl.closest('.media__gallery').querySelector('[data-action="resize_gallery"]');
+
+        var galleryThumbs = new Swiper(currentThumbs, {
+            spaceBetween: 0,
+            centeredSlides: false,
+            // slidesPerView: 'auto',
+            touchRatio: 0.2,
+            slidesPerView: 7,
+            slideToClickedSlide: true,
+            nested: true,
+            resistanceRatio: 0,
+        });
+        var galleryTop = new Swiper(galleryTopEl, {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            nested: true,
+            resistanceRatio: 0,
+            preloadImages: false,
+            lazy: true,
+            autoHeight: false,
+            navigation: {
+                nextEl: galleryTopEl.querySelector('.swiper-btn.button-next'),
+                prevEl: galleryTopEl.querySelector('.swiper-btn.button-prev')
+            },
+            pagination: {
+                el: currentCounter,
+                type: 'custom',
+                renderCustom: function (swiper, current, total) {
+                    return '<span class="red-color">' + current + '</span>/<span>' + total + '</span>';
+                }
+            },
+            on: {
+                init: function () {
+                    if (galleryTopEl.querySelector('.gallery-top .swiper-slide-active')) {
+                        var slideCaption = galleryTopEl.querySelector('.gallery-top .swiper-slide-active').getAttribute("data-caption"),
+                            slideSource = galleryTopEl.querySelector('.gallery-top .swiper-slide-active').getAttribute("data-source");
+                        galleryTopEl.closest('.media__gallery').querySelector('.gallery_description').textContent = slideCaption;
+                        galleryTopEl.closest('.media__gallery').querySelector('.gallery__footer_source').textContent = slideSource;
+                    }
+                },
+                slideChange: function () {
+                    var slideCaption = galleryTop.slides[galleryTop.activeIndex].getAttribute("data-caption"),
+                        slideSource = galleryTop.slides[galleryTop.activeIndex].getAttribute("data-source");
+                    galleryTopEl.closest('.media__gallery').querySelector('.gallery_description').textContent = slideCaption;
+                    galleryTopEl.closest('.media__gallery').querySelector('.gallery__footer_source').textContent = slideSource;
+                }
+            }
+        });
+        /*var galleryTopSwiperBtn = {
+            nextEl: galleryTopEl.querySelector('.swiper-btn.button-next'),
+            prevEl: galleryTopEl.querySelector('.swiper-btn.button-prev')
+        };
+
+        var galleryTopSwiperPagination = {
+            el: currentCounter,
+            type: 'custom',
+            renderCustom: function (swiper, current, total) {
+                return '<span class="red-color">' + current + '</span>/<span>' + total + '</span>';
+            }
+        };*/
+
+
+
+        galleryThumbs.controller.control = galleryTop;
+        galleryTop.controller.control = galleryThumbs;
+
+        currentGalleryExpand.addEventListener('click', function () {
+            this.closest('.gallery__container').classList.toggle('full_screen');
+            this.querySelector('span').classList.toggle('icon-scrabble');
+            this.querySelector('span').classList.toggle('icon-expand');
+            galleryTop.update();
+            galleryThumbs.update();
+        });
+    });
+}
+
+
+var authenticationPopupSelector = document.querySelector('#login-popup .authentication-popup-container');
+var activeIndex = 0;
+
+var swiperOptions = {
+    speed: 600,
+    spaceBetween: 100,
+    autoHeight: true,
+    observer: true,
+    observeSlideChildren: true,
+    simulateTouch: false,
+    effect: 'fade',
+    fadeEffect: {
+        crossFade: true
+    },
+    on: {
+        slideChangeTransitionStart: function (e) {
+            document.querySelector('.alert-danger').style.display = 'none';
+            document.querySelector('.alert-success').style.display = 'none';
+            // console.log(e);
+            // activeIndex = e.activeIndex;
+            // var isSubscriptionShouldBeHidden = document.querySelectorAll('#login-popup .authentication-popup-container .swiper-slide')[activeIndex].classList.contains('hide-create-subscription');
+            // document.getElementById('login-popup').classList.toggle('hide-create-subscription', isSubscriptionShouldBeHidden);
+        }
+    }
+};
+
+var authenticationPopup = new Swiper(authenticationPopupSelector, swiperOptions);
+function show_popup(){
+    authenticationPopup.update();
+    document.querySelector('[data-login-popup]').classList.add('active');
+}
+
+document.addEventListener('click', function (event) {
+    if(event.target.matches('#login-popup .authentication-popup-container .forgot-pas')){
+        event.preventDefault();
+        authenticationPopup.slideTo(1);
+    }
+
+    if(event.target.matches('#login-popup .authentication-popup-container .back-to-login')){
+        event.preventDefault();
+        authenticationPopup.slideTo(0);
+    }
+
+});
+if (document.querySelector('#login-popup .authentication-popup-container .back-to-sign-up')) {
+    document.querySelector('#login-popup .authentication-popup-container .back-to-sign-up').addEventListener('click', function (e) {
+        authenticationPopup.slideTo(3);
+        e.preventDefault();
+    });
+}
+
+
+
+document.querySelectorAll('#login-popup .close-popup').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+        document.querySelector('#login-popup').classList.remove('active');
+    });
+});
+
+document.querySelectorAll('#end-subscription-popup .close-popup').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+        document.querySelector('#end-subscription-popup').classList.remove('active');
+    });
+});
+
+
+var form_login = document.querySelector(".login-form");
+var form_register = document.querySelector(".register-form");
+var swiperContainer_login;
+var swiperContainer_register;
+var swiper_register;
+var togglePassword = document.querySelector('#toggle-password');
+var password = document.querySelector('#password');
+
+function updateSwiperContainer() {
+    setTimeout(function () {
+        if (swiper_login) {
+            swiper_login.updateAutoHeight(600);
+        }
+    }, 100)
+}
+
+function updateSwiperContainer_register() {
+    setTimeout(function () {
+        if (swiper_register) {
+            swiper_register.updateAutoHeight(600);
+        }
+    }, 100)
+}
+
+if (togglePassword) {
+    togglePassword.addEventListener('click', function (e) {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.classList.toggle('icon-eye');
+        this.classList.toggle('icon-eye-slash');
+    });
+}
+form_login.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    form_login.classList.add('pending');
+
+    swiperContainer_login = form_login.closest('.swiper-container');
+
+    if (swiperContainer_login && swiperContainer_login) {
+        swiper_login = swiperContainer_login.swiper;
+    } else {
+        swiper_login = false;
+    }
+
+    var formData = new FormData(form_login);
+    window.dataLayer.push({
+        'event': 'login',
+        'eventLabel': 'form',
+    });
+
+    for (const [key, value] of formData) {
+        console.log(`${key}: ${value}\n`);
+    }
+
+    fetch('/user_login', {
+        method: 'POST',
+        headers: {
+            // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: formData
+    }).then(response => response.json())
+        .then(data => {
+//            console.log(data);
+            if (data.status === 'ok') {
+                if (data.redirect !== '') {
+                    window.location.href = data.redirect;
+                } else {
+                    window.location.reload();
+                }
+            } else if (data.message === "too_many_attempts") {
+                form_login.querySelector('#error-login-many-attempts').style.display = 'block';
+            } else if (data.message === "auth_failed" || data.message === "invalid_credential") {
+                form_login.querySelector('#error-login-auth').style.display = 'block';
+            } else {
+                form_login.querySelector('#error-login-oops').style.display = 'block';
+            }
+
+            form_login.classList.remove('pending');
+
+            if (swiperContainer_login) {
+                updateSwiperContainer();
+            }
+        })
+        .catch(error => {
+            form_login.querySelector('.login-error').style.display = 'none';
+
+            // console.log(error);
+            if (error.response && error.response.message === "too_many_attempts") {
+                form_login.querySelector('#error-login-many-attempts').style.display = 'block';
+            } else if (error.response && (error.response.message === "auth_failed" || error.response.message === "invalid_credential")) {
+                form_login.querySelector('#error-login-auth').style.display = 'block';
+            } else {
+                form_login.querySelector('#error-login-oops').style.display = 'block';
+            }
+
+            form_login.classList.remove('pending');
+
+            if (swiperContainer_login) {
+                updateSwiperContainer();
+            }
+        });
+
+});
+
+if(form_register){
+    form_register.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        form_register.classList.add('pending');
+
+        swiperContainer_register = form_register.closest('.swiper-container');
+
+        if (swiperContainer_register && swiperContainer_register) {
+            swiper_register = swiperContainer_register.swiper;
+        } else {
+            swiper_register = false;
+        }
+
+        var formData = new FormData(this);
+        formData.append('terms', true);
+
+        fetch('/register_user', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data['status'] == 'success') {
+                    window.location.reload();
+                } else if (data['status'] == 'error' && data.message === "email_taken") {
+                    form_register.querySelector('#error-register-auth').style.display = 'block';
+                    form_register.querySelector('#error-register-oops').style.display = 'none';
+                } else {
+                    form_register.querySelector('#error-register-oops').style.display = 'block';
+                    form_register.querySelector('#error-register-auth').style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                if (error.responseJSON.message === "email_taken") {
+                    form_register.querySelector('#error-register-auth').style.display = 'block';
+                    form_register.querySelector('#error-register-oops').style.display = 'none';
+                } else {
+                    form_register.querySelector('#error-register-oops').style.display = 'block';
+                    form_register.querySelector('#error-register-auth').style.display = 'none';
+                }
+            })
+            .finally(() => {
+                form_register.classList.remove('pending');
+
+                if (swiperContainer_register) {
+                    updateSwiperContainer_register();
+                }
+            });
+    });
+
+}
+
+/*reset form*/
+var form_reset_password = document.querySelector(".reset-password-form");
+var swiperContainer_reset_password;
+var swiper_reset_password;
+
+function updateSwiperContainer() {
+    setTimeout(function () {
+        if (swiper_reset_password) {
+            swiper_reset_password.updateAutoHeight(600);
+        }
+    }, 100);
+}
+
+form_reset_password.addEventListener('submit', function (e) {
+    swiperContainer_reset_password = form_reset_password.closest('.swiper-container');
+
+    if (swiperContainer_reset_password && swiperContainer_reset_password) {
+        swiper_reset_password = swiperContainer_reset_password.swiper;
+    } else {
+        swiper_reset_password = false;
+    }
+
+    form_reset_password.classList.add('pending');
+
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    /*postAjax(
+        '/reset_password_request',
+        formData,
+        (data) => {
+            if (data == 1) {
+                document.querySelector('.alert-danger').style.display = 'none';
+                document.querySelector('.alert-success').style.display = 'block';
+                document.querySelector('#support-email').style.display = 'none';
+                document.querySelector('#reset-psw-support-email').style.display = 'block';
+            } else {
+                document.querySelector('.alert-danger').style.display = 'block';
+            }
+            form_reset_password.classList.remove('pending');
+            updateSwiperContainer();
+        },
+        (xhr) => {
+            document.querySelector('#validation-errors').innerHTML = '';
+            Object.entries(xhr.responseJSON.errors).forEach(([key, value]) => {
+                document.querySelector('.alert-danger').textContent = value;
+                document.querySelector('.alert-danger').style.display = 'block';
+            });
+            form_reset_password.classList.remove('pending');
+            updateSwiperContainer();
+        }
+    );*/
+
+    /*rewrite with fetch*/
+    fetch('/reset_password_request', {
+        method: 'POST',
+        headers: {
+            // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: formData
+    })
+        .then(response => response.text())
+        .then(data => {
+            if (data === '1') {
+                document.querySelector('.alert-danger').style.display = 'none';
+                document.querySelector('.alert-success').style.display = 'block';
+                document.querySelector('#support-email').style.display = 'none';
+                document.querySelector('#reset-psw-support-email').style.display = 'block';
+            } else {
+                document.querySelector('.alert-danger').style.display = 'block';
+            }
+            form_reset_password.classList.remove('pending');
+            updateSwiperContainer();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.querySelector('.alert-danger').style.display = 'block';
+            form_reset_password.classList.remove('pending');
+            updateSwiperContainer();
+        });
+});
+/*
+* */
+
+
+// createYoutubeVideosSlider();
+
+if(typeof galleryTopInit === 'function'){
+    galleryTopInit();
+}

@@ -1,0 +1,826 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@700&display=swap');
+body {
+    background: 0 0;
+    color: #171923;
+    font-family: roboto;
+    margin: 0;
+    padding: 0
+}
+
+.rating-blank-star,
+.rating-full-star,
+.rating-half-star {
+    background: transparent url(//assets.goodfirms.co/assets/img/widgets-star.png) no-repeat scroll -8px -9px;
+    display: inline-block;
+    height: 35px;
+    margin: 0 auto;
+    width: 39px
+}
+
+.rating-half-star {
+    background-position: -53px -9px
+}
+
+.rating-blank-star {
+    background-position: -98px -9px
+}
+.d-flex-column{display: flex;flex-direction: column;}
+.d-flex-center{display: flex;justify-content: center;align-content: center;}
+.d-flex-item-center{display: flex;align-items: center;justify-content: center;}
+.gap-5{gap:5px}
+.gap-10{gap:10px}
+.gap-15{gap:15px}
+.gap-20{gap:20px}
+.widget-t1 .rating-star-container-base{margin:0 auto}
+.rating-star-container-base {
+    background: url(https://assets.goodfirms.co/assets/img/big-widgets-star-empty.png) no-repeat;
+    display: flex;
+    height: 34px;
+    width: 196px;
+}
+.rating-star-fill {
+    background: url(https://assets.goodfirms.co/assets/img/big-widgets-star-fill.png);
+    display: flex;
+    height: 34px;
+}
+.m-s .rating-star-container-base {
+    background: url(https://assets.goodfirms.co/assets/img/mid-widgets-star-empty.png) no-repeat;
+    display: flex;
+    height: 24px;
+    width: 142px;
+}
+.m-s .rating-star-fill {
+    background: url(https://assets.goodfirms.co/assets/img/mid-widgets-star-fill.png);
+    display: flex;
+    height: 24px;
+}
+.s-s .rating-star-container-base {
+    background: url(https://assets.goodfirms.co/assets/img/small-widgets-star-empty.png)no-repeat;
+    display: flex;
+    height: 21px;
+    width: 127px;
+}
+.s-s .rating-star-fill {
+    background: url(https://assets.goodfirms.co/assets/img/small-widgets-star-fill.png);
+    display: flex;
+    height: 21px;
+}
+
+.m-s .rating-blank-star,
+.m-s .rating-full-star,
+.m-s .rating-half-star {
+    background-position: -8px -53px;
+    height: 27px;
+    width: 33px
+}
+
+.m-s .rating-half-star {
+    background-position: -43px -53px
+}
+
+.m-s .rating-blank-star {
+    background-position: -84px -53px
+}
+
+.s-s .rating-blank-star,
+.s-s .rating-full-star,
+.s-s .rating-half-star {
+    background-position: -8px -91px;
+    height: 22px;
+    width: 26px
+}
+
+.s-s .rating-half-star {
+    background-position: -40px -91px
+}
+
+.s-s .rating-blank-star {
+    background-position: -72px -91px
+}
+
+.widget-t1 {
+    height:auto;
+    line-height: 25px;
+    max-height: 165px;
+    max-width: 298px;
+    text-align: center;
+    width:calc(100% - 2px);
+    background: #fff;
+    padding-bottom: 15px;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+}
+
+
+
+.logo {
+    padding: 20px 0
+}
+
+.font14 {
+    font-size: 14px
+}
+
+.black {
+    color: #171923
+}
+
+.uppercase {
+    text-transform: uppercase
+}
+
+.review_block {
+    padding-bottom:20px
+}
+.flex-center-5{display: flex;justify-content: center;gap:5px}
+.block {
+    display: block
+}
+
+.inline-block {
+    display: inline-block;
+    overflow: hidden
+}
+
+.pattern-font {
+    color: #171923;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase
+}
+
+.widget-t2-review {
+    border: 6px solid #fafafa;
+    height: auto;
+    line-height: 25px;
+    max-height: 410px;
+    max-width: 446px;
+    overflow: hidden;
+    text-align: center;
+    width: 96%;
+    background: #fff;
+}
+
+.margin-auto {
+    margin: 0 auto
+}
+
+.p_0_10 {
+    padding: 0 10px
+}
+
+.p_5_0 {
+    padding: 5px 0
+}
+
+.p_10_0 {
+    padding: 10px 0
+}
+
+.compnay-info {
+    padding: 20px 15px
+}
+
+.widget-t3-basic .compnay-info {
+    padding:13px 15px 12px 15px
+}
+
+.company-reviews {
+    border-bottom: 6px solid #fafafa;
+    padding: 15px;
+    text-align: left
+}
+
+.hegiht-22 {
+    height: 22px;
+    line-height: 25px
+}
+
+.company-info-title {
+    color: #000;
+    float: left;
+    font-size: 18px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 70%
+}
+
+.time-ago {
+    color: #7f7f7f;
+    float: right;
+    font-size: 11px;
+    text-transform: uppercase
+}
+
+.dir-company-info {
+    overflow: hidden
+}
+
+.company-reviews-area {
+    border-top: 6px solid #fafafa;
+    height: auto;
+    max-height: 289px;
+    overflow-y: auto
+}
+
+.feedback {
+    font-size: 13px;
+    line-height: 18px
+}
+
+.widget-t3-basic {
+    max-width: 375px;
+    width:calc(100% - 2px);
+    border: 1px solid #dbdbdb;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.widget-t3-basic .compnay-info .block:first-child {
+    padding-bottom: 10px
+}
+
+.widget-t3-basic .pattern-font {
+    font-size: 24px
+}
+
+.p_r_5 {
+    padding-right: 5px
+}
+
+.widget-t3-line {
+    width: calc(100% - 2px);
+    border: 1px solid #dbdbdb;
+    background: #fff;
+    border-radius: 4px;
+}
+.widget-t3-line .compnay-info{padding: 17px 15px;}
+.widget-t3-line .avg-block {
+    display: inline-block;
+    overflow: hidden
+}
+
+.widget-t3-line .pattern-font {
+    font-size: 24px
+}
+
+.widget-t4-basic .pattern-font {
+    font-size: 24px
+}
+
+.widget-t4-basic {
+    text-align: center;
+    width: 210px;
+    border: 1px solid #dbdbdb;
+    background: #fff;
+    border-radius: 4px;
+}
+.widget-t4-basic  .compnay-info {
+    padding: 15px;
+}
+.widget-t4-line {
+    width: calc(100% - 2px);
+    border: 1px solid #dbdbdb;
+    background: #fff;
+    border-radius: 4px;
+}
+.widget-t4-line .compnay-info {
+    padding: 16px 15px;
+}
+.widget-t4-line .avg-block {
+    display: inline-block;
+    overflow: hidden
+}
+
+.widget-t5-basic {
+    text-align: center;
+    width: 210px;
+    border: 1px solid #dbdbdb;
+    background: #fff;
+    border-radius: 4px;
+}
+.font16{font-size:16px}
+
+.font18 {
+    font-size: 18px
+}
+
+.weight-700 {
+    font-weight: 700
+}
+
+.widget-t5-basic .compnay-info{flex-wrap: wrap}
+
+.widget-t5-line {
+    width: calc(100% - 2px);
+    border: 1px solid #dbdbdb;
+    background: #fff;
+    border-radius: 4px;
+}
+.widget-t5-line .compnay-info {
+    padding: 17px 15px;
+}
+.widget-t5-line .avg-block {
+    display: inline-block;
+    overflow: hidden
+}
+
+
+.widget-t6-basic {
+    max-width: 195px;
+    text-align: center;
+    width: calc(100% - 2px);
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+}
+.widget-t6-basic .flex-wrap{flex-wrap: wrap}
+.widget-t6-basic .compnay-info {
+    padding:5px 14px 5px 14px;
+}
+
+.widget-t6-basic .avg-block {
+    display: inline-block;
+    height: 24px;
+    line-height: 23px;
+    overflow: hidden
+}
+
+.widget-t6-basic .pattern-font {
+    font-size:18px
+}
+
+.widget-t6-line {
+    width: calc(100% - 2px);
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+}
+.widget-t6-line .compnay-info {
+    padding: 18px 14px;
+}
+.widget-t6-line .avg-block {
+    display: inline-block;
+    overflow: hidden
+}
+
+.widget-t6-line .pattern-font {
+    font-size: 18px
+}
+
+.widget-t7-basic {
+    max-width: 380px;
+    width: 100%
+}
+
+.widget-t7-basic .compnay-info {
+    text-align: center
+}
+
+.widget-t7-basic .single-item {
+    border-top: 1px solid #eaeaea;
+    margin: 0 25px
+}
+
+.widget-t7-basic .slick-list {
+    padding: 15px 0
+}
+
+.widget-t7-basic .logo {
+    padding: 0 0 20px
+}
+
+.weight600 {
+    font-weight: 600
+}
+
+.weight700 {
+    font-weight: 700
+}
+
+.slick-dots li {
+    background: transparent url(//cdn.goodfirms.co/assets/img/dots.png) no-repeat scroll 0;
+    height: 9px;
+    opacity: .75;
+    width: 9px
+}
+
+.slick-dots li.slick-active,
+.slick-dots li:focus,
+.slick-dots li:hover {
+    background-position: -14px;
+    opacity: .75
+}
+
+.slider-head {
+    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+    width: 84%
+}
+
+.slick-slide {
+    height: auto;
+    text-align: center
+}
+
+.widget-t7-carousel {
+    height: 155px;
+    max-width: 1020px;
+    overflow: hidden;
+    width: 100%
+}
+
+.widget-t7-carousel .compnay-info {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 235px
+}
+
+.font12 {
+    font-size: 12px
+}
+
+.slick-prev {
+    background: transparent url(//cdn.goodfirms.co/assets/img/left-arrow.png) no-repeat scroll 0;
+    height: 21px;
+    width: 12px
+}
+
+.slick-next {
+    background: transparent url(//cdn.goodfirms.co/assets/img/right-arrow.png) no-repeat scroll 0;
+    height: 21px;
+    width: 12px
+}
+
+.widget-t7-carousel .responsive {
+    float: left;
+    margin: 15px 0;
+    max-width: 750px;
+    width: 100%
+}
+
+.widget-t7-carousel .slick-slide {
+    padding: 0 10px;
+    text-align: left
+}
+
+.widget-t7-carousel .slick-slide .slider-head {
+    color: #000;
+    font-weight: 500;
+    width: 100%
+}
+
+.widget-t7-carousel .time-ago {
+    height: 20px;
+    line-height: 20px;
+    text-transform: none
+}
+
+.slick-next.slick-disabled,
+.slick-prev.slick-disabled {
+    cursor: default;
+    filter: alpha(opacity=30);
+    opacity: .3
+}
+
+@media (min-width:768px) and (max-width:991px) {
+    .widget-t7-carousel .responsive {
+        max-width: 490px
+    }
+
+    .widget-t7-carousel .slider-content {
+        width: 250px
+    }
+
+    .widget-t7-carousel .compnay-info {
+        width: 220px
+    }
+}
+
+@media (max-width:767px) {
+    .widget-t2-review .d-flex-item-center.gap-20.flex-wrap{gap:10px}
+    .widget-t7-carousel .responsive {
+        max-width: 290px
+    }
+
+    .widget-t7-carousel .slider-content {
+        width: 250px
+    }
+
+}
+
+@media (max-width:600px) {
+    .widget-t7-carousel .compnay-info {
+        padding: 15px 10px;
+        width: 200px
+    }
+
+    .widget-t7-carousel .responsive {
+        max-width: 200px
+    }
+
+    .widget-t7-carousel .slider-content {
+        width: 250px
+    }
+
+    .widget-t7-carousel .time-ago {
+        display: none
+    }
+}
+
+@media (max-width:450px) {
+    .widget-t7-carousel .responsive {
+        display: none
+    }
+
+    .widget-t7-carousel .compnay-info {
+        float: none;
+        margin: 0 auto;
+        width: 250px
+    }
+}
+
+.font13 {
+    font-size: 13px
+}
+
+.widget-t8-line {
+    width: calc(100% - 2px);
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+}
+.widget-t8-line .compnay-info{padding:18px 14px 18px 14px;}
+
+.widget-t8-line .avg-block {
+    overflow: hidden
+}
+
+.widget-t8-line .pattern-font {
+    font-size:18px
+}
+
+.widget-t8-line .powerbyimg {
+    margin-left: 4px;
+    position: relative;
+    top: -1px
+}
+
+#openlink,
+.openlink {
+    cursor: pointer
+}
+
+.widget-t9-horizontal-inline {
+    width: fit-content;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #dbdbdb;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 56px auto;
+}
+.widget-t9-horizontal-inline .logo{background: #171923;display: flex;align-items: center;justify-content: center;border-right: 1px solid #dbdbdb;padding: 8px 0;}
+.widget-t9-horizontal-inline .general-info{display: grid;text-align: left;padding: 10px;justify-items: flex-start;gap: 5px;}
+
+.mm-s .rating-star-container-base {
+    background: url(https://assets.goodfirms.co/static/star-strock.svg);
+    display: flex;
+    height: 15px;
+    width: 89px;
+}
+.d-flex{display: flex}
+.align-center{align-items: center}
+.font-30{font-size:30px;font-weight:600}
+.mm-s .rating-star-fill{background: url(https://assets.goodfirms.co/static/star-fill.svg);height: 15px;}
+.widget-t9-stacked-card{
+    width: fit-content;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #dbdbdb;
+    overflow: hidden;
+}
+.widget-t9-stacked-card .logo{background: #171923;display: flex;align-items: center;justify-content: center;border-bottom: 1px solid #dbdbdb;padding:10px 0;}
+.widget-t9-stacked-card .general-info{padding: 10px;}
+.widget-t9-score-focused{
+    width: fit-content;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #dbdbdb;
+    overflow: hidden;
+    padding:10px 12px;
+    display: flex;
+    flex-direction: column;
+}
+.widget-t9-score-focused .logo{padding:0}
+.widget-t9-horizontal-inline.minimalist-rating .general-info{padding:8px;gap:6px}
+.widget-t9-powered-by-badge{
+    width: fit-content;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #dbdbdb;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.widget-t9-powered-by-badge .general-info{padding:10px}
+.widget-t9-powered-by-badge .general-info .logo{padding:0}
+
+.widget-t9-powered-by-badge .s-s .rating-star-container-base{width:104px}
+.widget-t9-powered-by-badge .s-s .rating-star-container-base,.widget-t9-powered-by-badge  .s-s .rating-star-fill{background-size: 104px 17px;height:17px;width:104px}
+.powered-by-text{background: #171923;text-align: center;padding:8px 0;font-size:14px;color:#fff}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    src: local(Roboto), local(Roboto-Regular), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOmCnqEu92Fr1Mu72xKOzY.woff2) format("woff2");
+    unicode-range: u+0460-052f, u+1c80-1c88, u+20b4, u+2de0-2dff, u+a640-a69f, u+fe2e-fe2f
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    src: local(Roboto), local(Roboto-Regular), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOmCnqEu92Fr1Mu5mxKOzY.woff2) format("woff2");
+    unicode-range: u+0400-045f, u+0490-0491, u+04b0-04b1, u+2116
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    src: local(Roboto), local(Roboto-Regular), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOmCnqEu92Fr1Mu7mxKOzY.woff2) format("woff2");
+    unicode-range: u+1f??
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    src: local(Roboto), local(Roboto-Regular), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOmCnqEu92Fr1Mu4WxKOzY.woff2) format("woff2");
+    unicode-range: u+0370-03ff
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    src: local(Roboto), local(Roboto-Regular), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOmCnqEu92Fr1Mu7WxKOzY.woff2) format("woff2");
+    unicode-range: u+0102-0103, u+0110-0111, u+0128-0129, u+0168-0169, u+01a0-01a1, u+01af-01b0, u+1ea0-1ef9, u+20ab
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    src: local(Roboto), local(Roboto-Regular), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOmCnqEu92Fr1Mu7GxKOzY.woff2) format("woff2");
+    unicode-range: u+0100-024f, u+0259, u+1e??, u+2020, u+20a0-20ab, u+20ad-20cf, u+2113, u+2c60-2c7f, u+a720-a7ff
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    src: local(Roboto), local(Roboto-Regular), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOmCnqEu92Fr1Mu4mxK.woff2) format("woff2");
+    unicode-range: u+00??, u+0131, u+0152-0153, u+02bb-02bc, u+02c6, u+02da, u+02dc, u+2000-206f, u+2074, u+20ac, u+2122, u+2191, u+2193, u+2212, u+2215, u+feff, u+fffd
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    src: local("Roboto Medium"), local(Roboto-Medium), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOlCnqEu92Fr1MmEU9fCRc4EsA.woff2) format("woff2");
+    unicode-range: u+0460-052f, u+1c80-1c88, u+20b4, u+2de0-2dff, u+a640-a69f, u+fe2e-fe2f
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    src: local("Roboto Medium"), local(Roboto-Medium), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOlCnqEu92Fr1MmEU9fABc4EsA.woff2) format("woff2");
+    unicode-range: u+0400-045f, u+0490-0491, u+04b0-04b1, u+2116
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    src: local("Roboto Medium"), local(Roboto-Medium), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOlCnqEu92Fr1MmEU9fCBc4EsA.woff2) format("woff2");
+    unicode-range: u+1f??
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    src: local("Roboto Medium"), local(Roboto-Medium), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOlCnqEu92Fr1MmEU9fBxc4EsA.woff2) format("woff2");
+    unicode-range: u+0370-03ff
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    src: local("Roboto Medium"), local(Roboto-Medium), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOlCnqEu92Fr1MmEU9fCxc4EsA.woff2) format("woff2");
+    unicode-range: u+0102-0103, u+0110-0111, u+0128-0129, u+0168-0169, u+01a0-01a1, u+01af-01b0, u+1ea0-1ef9, u+20ab
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    src: local("Roboto Medium"), local(Roboto-Medium), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOlCnqEu92Fr1MmEU9fChc4EsA.woff2) format("woff2");
+    unicode-range: u+0100-024f, u+0259, u+1e??, u+2020, u+20a0-20ab, u+20ad-20cf, u+2113, u+2c60-2c7f, u+a720-a7ff
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    src: local("Roboto Medium"), local(Roboto-Medium), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOlCnqEu92Fr1MmEU9fBBc4.woff2) format("woff2");
+    unicode-range: u+00??, u+0131, u+0152-0153, u+02bb-02bc, u+02c6, u+02da, u+02dc, u+2000-206f, u+2074, u+20ac, u+2122, u+2191, u+2193, u+2212, u+2215, u+feff, u+fffd
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 700;
+    src: local("Roboto Bold"), local(Roboto-Bold), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOlCnqEu92Fr1MmWUlfCRc4EsA.woff2) format("woff2");
+    unicode-range: u+0460-052f, u+1c80-1c88, u+20b4, u+2de0-2dff, u+a640-a69f, u+fe2e-fe2f
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 700;
+    src: local("Roboto Bold"), local(Roboto-Bold), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOlCnqEu92Fr1MmWUlfABc4EsA.woff2) format("woff2");
+    unicode-range: u+0400-045f, u+0490-0491, u+04b0-04b1, u+2116
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 700;
+    src: local("Roboto Bold"), local(Roboto-Bold), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOlCnqEu92Fr1MmWUlfCBc4EsA.woff2) format("woff2");
+    unicode-range: u+1f??
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 700;
+    src: local("Roboto Bold"), local(Roboto-Bold), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOlCnqEu92Fr1MmWUlfBxc4EsA.woff2) format("woff2");
+    unicode-range: u+0370-03ff
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 700;
+    src: local("Roboto Bold"), local(Roboto-Bold), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOlCnqEu92Fr1MmWUlfCxc4EsA.woff2) format("woff2");
+    unicode-range: u+0102-0103, u+0110-0111, u+0128-0129, u+0168-0169, u+01a0-01a1, u+01af-01b0, u+1ea0-1ef9, u+20ab
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 700;
+    src: local("Roboto Bold"), local(Roboto-Bold), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOlCnqEu92Fr1MmWUlfChc4EsA.woff2) format("woff2");
+    unicode-range: u+0100-024f, u+0259, u+1e??, u+2020, u+20a0-20ab, u+20ad-20cf, u+2113, u+2c60-2c7f, u+a720-a7ff
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 700;
+    src: local("Roboto Bold"), local(Roboto-Bold), url(//cdn.goodfirms.co/assets/fonts/roboto/KFOlCnqEu92Fr1MmWUlfBBc4.woff2) format("woff2");
+    unicode-range: u+00??, u+0131, u+0152-0153, u+02bb-02bc, u+02c6, u+02da, u+02dc, u+2000-206f, u+2074, u+20ac, u+2122, u+2191, u+2193, u+2212, u+2215, u+feff, u+fffd
+}

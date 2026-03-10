@@ -1,0 +1,733 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+
+<meta charset="UTF-8">
+<title>3.5. Механізми безпеки комп'ютерних мереж</title>
+
+<script>
+if(localStorage.getItem("theme")==="dark")
+document.documentElement.classList.add("dark")
+</script>
+
+
+<style>
+
+body{
+font-family:Segoe UI,Arial;
+margin:0;
+background:#f4f6fb;
+padding:25px;
+transition:.3s;
+}
+
+.dark body{
+background:#1e1e1e;
+color:white;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+.topbar{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:25px;
+}
+
+.btn{
+padding:8px 14px;
+border:none;
+border-radius:8px;
+background:#1976d2;
+color:white;
+cursor:pointer;
+font-size:14px;
+}
+
+.btn:hover{
+background:#0d47a1;
+}
+
+.search{
+padding:10px;
+width:240px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+border-radius:12px;
+padding:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.1);
+transition:.2s;
+}
+
+.dark .card{
+background:#2c2c2c;
+}
+
+.card:hover{
+transform:translateY(-4px);
+}
+
+.cardlink{
+display:block;
+}
+
+.icon{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.title{
+font-weight:600;
+word-break:break-word;
+}
+
+.progress{
+margin-top:8px;
+font-size:13px;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.star{
+cursor:pointer;
+font-size:18px;
+}
+
+.bar{
+height:8px;
+background:#ddd;
+border-radius:4px;
+margin-bottom:18px;
+}
+
+.bar-fill{
+height:8px;
+background:#4caf50;
+border-radius:4px;
+width:0%;
+}
+
+</style>
+
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<a class="btn" href="..\../main.html">🏠 Портал</a>
+<a class="btn" href="..\../classroom/index.html">📚 Classroom</a>
+<a class="btn" href="..\../moodle/index.html">🎓 Moodle</a>
+<a class="btn" href="..\../edki/index.html">📂 ЄДКІ</a>
+
+<button class="btn" onclick="toggleTheme()">🌙 Темна тема</button>
+
+<input id="search" class="search" onkeyup="searchFiles()" placeholder="Пошук...">
+
+</div>
+
+<h2>3.5. Механізми безпеки комп'ютерних мереж</h2>
+
+
+<div id="progresslabel">Прогрес: 0%</div>
+
+<div class="bar">
+<div id="progressbar" class="bar-fill"></div>
+</div>
+
+
+<div class="grid">
+
+
+<a class="cardlink" href="../index.html">
+<div class="card">
+<div class="icon">⬅️</div>
+<div class="title">Назад</div>
+</div>
+</a>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_00_2023.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 00 2023.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_00_2023pdf" onclick="toggleLearned('BKM_00_2023pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_00_2023pdf" data-id="BKM_00_2023pdf" onclick="toggleStar('BKM_00_2023pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_01_2023.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 01 2023.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_01_2023pdf" onclick="toggleLearned('BKM_01_2023pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_01_2023pdf" data-id="BKM_01_2023pdf" onclick="toggleStar('BKM_01_2023pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_02_2023.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 02 2023.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_02_2023pdf" onclick="toggleLearned('BKM_02_2023pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_02_2023pdf" data-id="BKM_02_2023pdf" onclick="toggleStar('BKM_02_2023pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_03.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 03.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_03pdf" onclick="toggleLearned('BKM_03pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_03pdf" data-id="BKM_03pdf" onclick="toggleStar('BKM_03pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_04.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 04.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_04pdf" onclick="toggleLearned('BKM_04pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_04pdf" data-id="BKM_04pdf" onclick="toggleStar('BKM_04pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_05.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 05.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_05pdf" onclick="toggleLearned('BKM_05pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_05pdf" data-id="BKM_05pdf" onclick="toggleStar('BKM_05pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_06.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 06.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_06pdf" onclick="toggleLearned('BKM_06pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_06pdf" data-id="BKM_06pdf" onclick="toggleStar('BKM_06pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_07.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 07.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_07pdf" onclick="toggleLearned('BKM_07pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_07pdf" data-id="BKM_07pdf" onclick="toggleStar('BKM_07pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_08.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 08.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_08pdf" onclick="toggleLearned('BKM_08pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_08pdf" data-id="BKM_08pdf" onclick="toggleStar('BKM_08pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_09.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 09.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_09pdf" onclick="toggleLearned('BKM_09pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_09pdf" data-id="BKM_09pdf" onclick="toggleStar('BKM_09pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_10.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 10.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_10pdf" onclick="toggleLearned('BKM_10pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_10pdf" data-id="BKM_10pdf" onclick="toggleStar('BKM_10pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_11.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 11.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_11pdf" onclick="toggleLearned('BKM_11pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_11pdf" data-id="BKM_11pdf" onclick="toggleStar('BKM_11pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_12.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 12.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_12pdf" onclick="toggleLearned('BKM_12pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_12pdf" data-id="BKM_12pdf" onclick="toggleStar('BKM_12pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_13.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 13.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_13pdf" onclick="toggleLearned('BKM_13pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_13pdf" data-id="BKM_13pdf" onclick="toggleStar('BKM_13pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_14_2023.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 14 2023.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_14_2023pdf" onclick="toggleLearned('BKM_14_2023pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_14_2023pdf" data-id="BKM_14_2023pdf" onclick="toggleStar('BKM_14_2023pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_15.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM 15.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_15pdf" onclick="toggleLearned('BKM_15pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_15pdf" data-id="BKM_15pdf" onclick="toggleStar('BKM_15pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="BKM_Scanning.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">BKM Scanning.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="BKM_Scanningpdf" onclick="toggleLearned('BKM_Scanningpdf')">
+вивчено
+</label>
+
+<span class="star" id="star_BKM_Scanningpdf" data-id="BKM_Scanningpdf" onclick="toggleStar('BKM_Scanningpdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="EDKI 3_5_2 Демчинський (VPN_v130).pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">EDKI 3 5 2 Демчинський (VPN v130).pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="EDKI_3_5_2__VPN_v130pdf" onclick="toggleLearned('EDKI_3_5_2__VPN_v130pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_EDKI_3_5_2__VPN_v130pdf" data-id="EDKI_3_5_2__VPN_v130pdf" onclick="toggleStar('EDKI_3_5_2__VPN_v130pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="OKM_for_3year_01.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">OKM for 3year 01.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="OKM_for_3year_01pdf" onclick="toggleLearned('OKM_for_3year_01pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_OKM_for_3year_01pdf" data-id="OKM_for_3year_01pdf" onclick="toggleStar('OKM_for_3year_01pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="OKM_for_3year_02.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">OKM for 3year 02.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="OKM_for_3year_02pdf" onclick="toggleLearned('OKM_for_3year_02pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_OKM_for_3year_02pdf" data-id="OKM_for_3year_02pdf" onclick="toggleStar('OKM_for_3year_02pdf')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="OKM_for_3year_03.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">OKM for 3year 03.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="OKM_for_3year_03pdf" onclick="toggleLearned('OKM_for_3year_03pdf')">
+вивчено
+</label>
+
+<span class="star" id="star_OKM_for_3year_03pdf" data-id="OKM_for_3year_03pdf" onclick="toggleStar('OKM_for_3year_03pdf')">☆</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+function toggleTheme(){
+
+if(document.documentElement.classList.contains("dark")){
+document.documentElement.classList.remove("dark")
+localStorage.setItem("theme","light")
+}else{
+document.documentElement.classList.add("dark")
+localStorage.setItem("theme","dark")
+}
+
+}
+
+function searchFiles(){
+
+let input=document.getElementById("search").value.toLowerCase()
+let cards=document.querySelectorAll(".card")
+
+cards.forEach(c=>{
+if(c.innerText.toLowerCase().includes(input))
+c.style.display=""
+else
+c.style.display="none"
+})
+
+}
+
+function toggleLearned(id){
+
+let box=document.getElementById(id)
+
+if(box.checked)
+localStorage.setItem("done_"+id,"1")
+else
+localStorage.removeItem("done_"+id)
+
+updateProgress()
+
+}
+
+function toggleStar(id){
+
+let star=document.getElementById("star_"+id)
+
+if(localStorage.getItem("star_"+id)){
+localStorage.removeItem("star_"+id)
+star.innerText="☆"
+}else{
+localStorage.setItem("star_"+id,"1")
+star.innerText="⭐"
+}
+
+}
+
+function loadState(){
+
+document.querySelectorAll(".learnbox").forEach(box=>{
+if(localStorage.getItem("done_"+box.id))
+box.checked=true
+})
+
+document.querySelectorAll(".star").forEach(s=>{
+let id=s.dataset.id
+if(localStorage.getItem("star_"+id))
+s.innerText="⭐"
+})
+
+updateProgress()
+
+}
+
+function updateProgress(){
+
+let boxes=document.querySelectorAll(".learnbox")
+
+let done=0
+boxes.forEach(b=>{
+if(localStorage.getItem("done_"+b.id))
+done++
+})
+
+let percent=0
+if(boxes.length>0)
+percent=Math.round(done/boxes.length*100)
+
+let bar=document.getElementById("progressbar")
+if(bar) bar.style.width=percent+"%"
+
+let label=document.getElementById("progresslabel")
+if(label) label.innerText="Прогрес: "+percent+"%"
+
+}
+
+window.onload=loadState
+
+</script>
+
+
+</body>
+</html>

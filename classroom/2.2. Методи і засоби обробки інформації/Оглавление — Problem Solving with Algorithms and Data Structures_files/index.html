@@ -1,0 +1,1833 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+
+<meta charset="UTF-8">
+<title>Оглавление — Problem Solving with Algorithms and Data Structures_files</title>
+
+<script>
+if(localStorage.getItem("theme")==="dark")
+document.documentElement.classList.add("dark")
+</script>
+
+
+<style>
+
+body{
+font-family:Segoe UI,Arial;
+margin:0;
+background:#f4f6fb;
+padding:25px;
+transition:.3s;
+}
+
+.dark body{
+background:#1e1e1e;
+color:white;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+.topbar{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:25px;
+}
+
+.btn{
+padding:8px 14px;
+border:none;
+border-radius:8px;
+background:#1976d2;
+color:white;
+cursor:pointer;
+font-size:14px;
+}
+
+.btn:hover{
+background:#0d47a1;
+}
+
+.search{
+padding:10px;
+width:240px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+border-radius:12px;
+padding:18px;
+box-shadow:0 4px 12px rgba(0,0,0,.1);
+transition:.2s;
+}
+
+.dark .card{
+background:#2c2c2c;
+}
+
+.card:hover{
+transform:translateY(-4px);
+}
+
+.cardlink{
+display:block;
+}
+
+.icon{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.title{
+font-weight:600;
+word-break:break-word;
+}
+
+.progress{
+margin-top:8px;
+font-size:13px;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.star{
+cursor:pointer;
+font-size:18px;
+}
+
+.bar{
+height:8px;
+background:#ddd;
+border-radius:4px;
+margin-bottom:18px;
+}
+
+.bar-fill{
+height:8px;
+background:#4caf50;
+border-radius:4px;
+width:0%;
+}
+
+</style>
+
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<a class="btn" href="..\..\../main.html">🏠 Портал</a>
+<a class="btn" href="..\..\../classroom/index.html">📚 Classroom</a>
+<a class="btn" href="..\..\../moodle/index.html">🎓 Moodle</a>
+<a class="btn" href="..\..\../edki/index.html">📂 ЄДКІ</a>
+
+<button class="btn" onclick="toggleTheme()">🌙 Темна тема</button>
+
+<input id="search" class="search" onkeyup="searchFiles()" placeholder="Пошук...">
+
+</div>
+
+<h2>Оглавление — Problem Solving with Algorithms and Data Structures files</h2>
+
+
+<div id="progresslabel">Прогрес: 0%</div>
+
+<div class="bar">
+<div id="progressbar" class="bar-fill"></div>
+</div>
+
+
+<div class="grid">
+
+
+<a class="cardlink" href="../index.html">
+<div class="card">
+<div class="icon">⬅️</div>
+<div class="title">Назад</div>
+</div>
+</a>
+
+<div class="card">
+
+<a class="cardlink" href="MathJax.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">MathJax.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="MathJaxjs_" onclick="toggleLearned('MathJaxjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_MathJaxjs_" data-id="MathJaxjs_" onclick="toggleStar('MathJaxjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="PythonDScover.jpg" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">PythonDScover.jpg</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="PythonDScoverjpg" onclick="toggleLearned('PythonDScoverjpg')">
+вивчено
+</label>
+
+<span class="star" id="star_PythonDScoverjpg" data-id="PythonDScoverjpg" onclick="toggleStar('PythonDScoverjpg')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="activecode.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">activecode.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="activecodecss" onclick="toggleLearned('activecodecss')">
+вивчено
+</label>
+
+<span class="star" id="star_activecodecss" data-id="activecodecss" onclick="toggleStar('activecodecss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="activecode.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">activecode.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="activecodejs_" onclick="toggleLearned('activecodejs_')">
+вивчено
+</label>
+
+<span class="star" id="star_activecodejs_" data-id="activecodejs_" onclick="toggleStar('activecodejs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="all(1).js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">all(1).js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="all1js_" onclick="toggleLearned('all1js_')">
+вивчено
+</label>
+
+<span class="star" id="star_all1js_" data-id="all1js_" onclick="toggleStar('all1js_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="all.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">all.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="alljs_" onclick="toggleLearned('alljs_')">
+вивчено
+</label>
+
+<span class="star" id="star_alljs_" data-id="alljs_" onclick="toggleStar('alljs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="animationbase.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">animationbase.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="animationbasejs_" onclick="toggleLearned('animationbasejs_')">
+вивчено
+</label>
+
+<span class="star" id="star_animationbasejs_" data-id="animationbasejs_" onclick="toggleStar('animationbasejs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="assess.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">assess.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="assessjs_" onclick="toggleLearned('assessjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_assessjs_" data-id="assessjs_" onclick="toggleStar('assessjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="basic.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">basic.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="basiccss" onclick="toggleLearned('basiccss')">
+вивчено
+</label>
+
+<span class="star" id="star_basiccss" data-id="basiccss" onclick="toggleStar('basiccss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="bookfuncs.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">bookfuncs.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="bookfuncsjs_" onclick="toggleLearned('bookfuncsjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_bookfuncsjs_" data-id="bookfuncsjs_" onclick="toggleStar('bookfuncsjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="bootstrap-sphinx.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">bootstrap-sphinx.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="bootstrapsphinxcss" onclick="toggleLearned('bootstrapsphinxcss')">
+вивчено
+</label>
+
+<span class="star" id="star_bootstrapsphinxcss" data-id="bootstrapsphinxcss" onclick="toggleStar('bootstrapsphinxcss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="bootstrap-sphinx.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">bootstrap-sphinx.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="bootstrapsphinxjs_" onclick="toggleLearned('bootstrapsphinxjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_bootstrapsphinxjs_" data-id="bootstrapsphinxjs_" onclick="toggleStar('bootstrapsphinxjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="bootstrap.min.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">bootstrap.min.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="bootstrapmincss" onclick="toggleLearned('bootstrapmincss')">
+вивчено
+</label>
+
+<span class="star" id="star_bootstrapmincss" data-id="bootstrapmincss" onclick="toggleStar('bootstrapmincss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="bootstrap.min.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">bootstrap.min.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="bootstrapminjs_" onclick="toggleLearned('bootstrapminjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_bootstrapminjs_" data-id="bootstrapminjs_" onclick="toggleStar('bootstrapminjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="btn_donate_SM.gif" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">btn donate SM.gif</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="btn_donate_SMgif" onclick="toggleLearned('btn_donate_SMgif')">
+вивчено
+</label>
+
+<span class="star" id="star_btn_donate_SMgif" data-id="btn_donate_SMgif" onclick="toggleStar('btn_donate_SMgif')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="button.856debeac157d9669cf51e73a08fbc93.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">button.856debeac157d9669cf51e73a08fbc93.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="button856debeac157d9669cf51e73a08fbc93js_" onclick="toggleLearned('button856debeac157d9669cf51e73a08fbc93js_')">
+вивчено
+</label>
+
+<span class="star" id="star_button856debeac157d9669cf51e73a08fbc93js_" data-id="button856debeac157d9669cf51e73a08fbc93js_" onclick="toggleStar('button856debeac157d9669cf51e73a08fbc93js_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="codemirror.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">codemirror.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="codemirrorcss" onclick="toggleLearned('codemirrorcss')">
+вивчено
+</label>
+
+<span class="star" id="star_codemirrorcss" data-id="codemirrorcss" onclick="toggleStar('codemirrorcss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="codemirror.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">codemirror.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="codemirrorjs_" onclick="toggleLearned('codemirrorjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_codemirrorjs_" data-id="codemirrorjs_" onclick="toggleStar('codemirrorjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="css.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">css.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="cssjs_" onclick="toggleLearned('cssjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_cssjs_" data-id="cssjs_" onclick="toggleStar('cssjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="d3.v2.min.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">d3.v2.min.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="d3v2minjs_" onclick="toggleLearned('d3v2minjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_d3v2minjs_" data-id="d3v2minjs_" onclick="toggleStar('d3v2minjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="doctools.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">doctools.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="doctoolsjs_" onclick="toggleLearned('doctoolsjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_doctoolsjs_" data-id="doctoolsjs_" onclick="toggleStar('doctoolsjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="follow_button.2f70fb173b9000da126c79afe2098f02.en.html" target="_blank">
+
+<div class="icon">🌐</div>
+<div class="title">follow button.2f70fb173b9000da126c79afe2098f02.en.html</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="follow_button2f70fb173b9000da126c79afe2098f02enhtml" onclick="toggleLearned('follow_button2f70fb173b9000da126c79afe2098f02enhtml')">
+вивчено
+</label>
+
+<span class="star" id="star_follow_button2f70fb173b9000da126c79afe2098f02enhtml" data-id="follow_button2f70fb173b9000da126c79afe2098f02enhtml" onclick="toggleStar('follow_button2f70fb173b9000da126c79afe2098f02enhtml')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="ga.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">ga.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="gajs_" onclick="toggleLearned('gajs_')">
+вивчено
+</label>
+
+<span class="star" id="star_gajs_" data-id="gajs_" onclick="toggleStar('gajs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="htmlmixed.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">htmlmixed.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="htmlmixedjs_" onclick="toggleLearned('htmlmixedjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_htmlmixedjs_" data-id="htmlmixedjs_" onclick="toggleStar('htmlmixedjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="javascript.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">javascript.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="javascriptjs_" onclick="toggleLearned('javascriptjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_javascriptjs_" data-id="javascriptjs_" onclick="toggleStar('javascriptjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="jquery-fix.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">jquery-fix.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="jqueryfixjs_" onclick="toggleLearned('jqueryfixjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_jqueryfixjs_" data-id="jqueryfixjs_" onclick="toggleStar('jqueryfixjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="jquery-migrate-1.2.1.min.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">jquery-migrate-1.2.1.min.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="jquerymigrate121minjs_" onclick="toggleLearned('jquerymigrate121minjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_jquerymigrate121minjs_" data-id="jquerymigrate121minjs_" onclick="toggleStar('jquerymigrate121minjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="jquery-ui-1.10.3.custom.min.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">jquery-ui-1.10.3.custom.min.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="jqueryui1103custommincss" onclick="toggleLearned('jqueryui1103custommincss')">
+вивчено
+</label>
+
+<span class="star" id="star_jqueryui1103custommincss" data-id="jqueryui1103custommincss" onclick="toggleStar('jqueryui1103custommincss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="jquery-ui-1.10.3.custom.min.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">jquery-ui-1.10.3.custom.min.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="jqueryui1103customminjs_" onclick="toggleLearned('jqueryui1103customminjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_jqueryui1103customminjs_" data-id="jqueryui1103customminjs_" onclick="toggleStar('jqueryui1103customminjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="jquery-ui.min.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">jquery-ui.min.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="jqueryuiminjs_" onclick="toggleLearned('jqueryuiminjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_jqueryuiminjs_" data-id="jqueryuiminjs_" onclick="toggleStar('jqueryuiminjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="jquery.ba-bbq.min.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">jquery.ba-bbq.min.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="jquerybabbqminjs_" onclick="toggleLearned('jquerybabbqminjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_jquerybabbqminjs_" data-id="jquerybabbqminjs_" onclick="toggleStar('jquerybabbqminjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="jquery.highlight.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">jquery.highlight.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="jqueryhighlightjs_" onclick="toggleLearned('jqueryhighlightjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_jqueryhighlightjs_" data-id="jqueryhighlightjs_" onclick="toggleStar('jqueryhighlightjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="jquery.hotkey.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">jquery.hotkey.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="jqueryhotkeyjs_" onclick="toggleLearned('jqueryhotkeyjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_jqueryhotkeyjs_" data-id="jqueryhotkeyjs_" onclick="toggleStar('jqueryhotkeyjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="jquery.idle-timer.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">jquery.idle-timer.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="jqueryidletimerjs_" onclick="toggleLearned('jqueryidletimerjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_jqueryidletimerjs_" data-id="jqueryidletimerjs_" onclick="toggleStar('jqueryidletimerjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="jquery.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">jquery.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="jqueryjs_" onclick="toggleLearned('jqueryjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_jqueryjs_" data-id="jqueryjs_" onclick="toggleStar('jqueryjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="jquery.jsPlumb-1.3.10-all-min.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">jquery.jsPlumb-1.3.10-all-min.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="jqueryjsPlumb1310allminjs_" onclick="toggleLearned('jqueryjsPlumb1310allminjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_jqueryjsPlumb1310allminjs_" data-id="jqueryjsPlumb1310allminjs_" onclick="toggleStar('jqueryjsPlumb1310allminjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="jquery.min.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">jquery.min.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="jqueryminjs_" onclick="toggleLearned('jqueryminjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_jqueryminjs_" data-id="jqueryminjs_" onclick="toggleStar('jqueryminjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="like.html" target="_blank">
+
+<div class="icon">🌐</div>
+<div class="title">like.html</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="likehtml" onclick="toggleLearned('likehtml')">
+вивчено
+</label>
+
+<span class="star" id="star_likehtml" data-id="likehtml" onclick="toggleStar('likehtml')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="lis.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">lis.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="lisjs_" onclick="toggleLearned('lisjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_lisjs_" data-id="lisjs_" onclick="toggleStar('lisjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="modal-basic.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">modal-basic.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="modalbasiccss" onclick="toggleLearned('modalbasiccss')">
+вивчено
+</label>
+
+<span class="star" id="star_modalbasiccss" data-id="modalbasiccss" onclick="toggleStar('modalbasiccss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="parsons-noconflict.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">parsons-noconflict.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="parsonsnoconflictjs_" onclick="toggleLearned('parsonsnoconflictjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_parsonsnoconflictjs_" data-id="parsonsnoconflictjs_" onclick="toggleStar('parsonsnoconflictjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="parsons.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">parsons.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="parsonscss" onclick="toggleLearned('parsonscss')">
+вивчено
+</label>
+
+<span class="star" id="star_parsonscss" data-id="parsonscss" onclick="toggleStar('parsonscss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="parsons.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">parsons.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="parsonsjs_" onclick="toggleLearned('parsonsjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_parsonsjs_" data-id="parsonsjs_" onclick="toggleStar('parsonsjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="pixel.gif" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">pixel.gif</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="pixelgif" onclick="toggleLearned('pixelgif')">
+вивчено
+</label>
+
+<span class="star" id="star_pixelgif" data-id="pixelgif" onclick="toggleStar('pixelgif')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="poll.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">poll.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="pollcss" onclick="toggleLearned('pollcss')">
+вивчено
+</label>
+
+<span class="star" id="star_pollcss" data-id="pollcss" onclick="toggleStar('pollcss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="poll.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">poll.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="polljs_" onclick="toggleLearned('polljs_')">
+вивчено
+</label>
+
+<span class="star" id="star_polljs_" data-id="polljs_" onclick="toggleStar('polljs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="prettify.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">prettify.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="prettifycss" onclick="toggleLearned('prettifycss')">
+вивчено
+</label>
+
+<span class="star" id="star_prettifycss" data-id="prettifycss" onclick="toggleStar('prettifycss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="prettify.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">prettify.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="prettifyjs_" onclick="toggleLearned('prettifyjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_prettifyjs_" data-id="prettifyjs_" onclick="toggleStar('prettifyjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="processing-1.4.1.min.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">processing-1.4.1.min.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="processing141minjs_" onclick="toggleLearned('processing141minjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_processing141minjs_" data-id="processing141minjs_" onclick="toggleStar('processing141minjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="pygments.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">pygments.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="pygmentscss" onclick="toggleLearned('pygmentscss')">
+вивчено
+</label>
+
+<span class="star" id="star_pygmentscss" data-id="pygmentscss" onclick="toggleStar('pygmentscss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="python.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">python.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="pythonjs_" onclick="toggleLearned('pythonjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_pythonjs_" data-id="pythonjs_" onclick="toggleStar('pythonjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="pytutor.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">pytutor.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="pytutorcss" onclick="toggleLearned('pytutorcss')">
+вивчено
+</label>
+
+<span class="star" id="star_pytutorcss" data-id="pytutorcss" onclick="toggleStar('pytutorcss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="pytutor.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">pytutor.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="pytutorjs_" onclick="toggleLearned('pytutorjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_pytutorjs_" data-id="pytutorjs_" onclick="toggleStar('pytutorjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="rangy-core.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">rangy-core.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="rangycorejs_" onclick="toggleLearned('rangycorejs_')">
+вивчено
+</label>
+
+<span class="star" id="star_rangycorejs_" data-id="rangycorejs_" onclick="toggleStar('rangycorejs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="rangy-cssclassapplier.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">rangy-cssclassapplier.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="rangycssclassapplierjs_" onclick="toggleLearned('rangycssclassapplierjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_rangycssclassapplierjs_" data-id="rangycssclassapplierjs_" onclick="toggleStar('rangycssclassapplierjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="rangy-textrange.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">rangy-textrange.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="rangytextrangejs_" onclick="toggleLearned('rangytextrangejs_')">
+вивчено
+</label>
+
+<span class="star" id="star_rangytextrangejs_" data-id="rangytextrangejs_" onclick="toggleStar('rangytextrangejs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="runestone-custom-sphinx-bootstrap.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">runestone-custom-sphinx-bootstrap.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="runestonecustomsphinxbootstrapcss" onclick="toggleLearned('runestonecustomsphinxbootstrapcss')">
+вивчено
+</label>
+
+<span class="star" id="star_runestonecustomsphinxbootstrapcss" data-id="runestonecustomsphinxbootstrapcss" onclick="toggleStar('runestonecustomsphinxbootstrapcss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="saved_resource.html" target="_blank">
+
+<div class="icon">🌐</div>
+<div class="title">saved resource.html</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="saved_resourcehtml" onclick="toggleLearned('saved_resourcehtml')">
+вивчено
+</label>
+
+<span class="star" id="star_saved_resourcehtml" data-id="saved_resourcehtml" onclick="toggleStar('saved_resourcehtml')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="skulpt-stdlib.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">skulpt-stdlib.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="skulptstdlibjs_" onclick="toggleLearned('skulptstdlibjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_skulptstdlibjs_" data-id="skulptstdlibjs_" onclick="toggleStar('skulptstdlibjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="skulpt.min.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">skulpt.min.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="skulptminjs_" onclick="toggleLearned('skulptminjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_skulptminjs_" data-id="skulptminjs_" onclick="toggleStar('skulptminjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="tabbedstuff.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">tabbedstuff.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="tabbedstuffcss" onclick="toggleLearned('tabbedstuffcss')">
+вивчено
+</label>
+
+<span class="star" id="star_tabbedstuffcss" data-id="tabbedstuffcss" onclick="toggleStar('tabbedstuffcss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="underscore-min.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">underscore-min.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="underscoreminjs_" onclick="toggleLearned('underscoreminjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_underscoreminjs_" data-id="underscoreminjs_" onclick="toggleStar('underscoreminjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="underscore.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">underscore.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="underscorejs_" onclick="toggleLearned('underscorejs_')">
+вивчено
+</label>
+
+<span class="star" id="star_underscorejs_" data-id="underscorejs_" onclick="toggleStar('underscorejs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="user-highlights.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">user-highlights.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="userhighlightscss" onclick="toggleLearned('userhighlightscss')">
+вивчено
+</label>
+
+<span class="star" id="star_userhighlightscss" data-id="userhighlightscss" onclick="toggleStar('userhighlightscss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="user-highlights.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">user-highlights.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="userhighlightsjs_" onclick="toggleLearned('userhighlightsjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_userhighlightsjs_" data-id="userhighlightsjs_" onclick="toggleStar('userhighlightsjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="video.css" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">video.css</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="videocss" onclick="toggleLearned('videocss')">
+вивчено
+</label>
+
+<span class="star" id="star_videocss" data-id="videocss" onclick="toggleStar('videocss')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="waypoints.min.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">waypoints.min.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="waypointsminjs_" onclick="toggleLearned('waypointsminjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_waypointsminjs_" data-id="waypointsminjs_" onclick="toggleStar('waypointsminjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="widget.html" target="_blank">
+
+<div class="icon">🌐</div>
+<div class="title">widget.html</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="widgethtml" onclick="toggleLearned('widgethtml')">
+вивчено
+</label>
+
+<span class="star" id="star_widgethtml" data-id="widgethtml" onclick="toggleStar('widgethtml')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="widget_iframe.2f70fb173b9000da126c79afe2098f02.html" target="_blank">
+
+<div class="icon">🌐</div>
+<div class="title">widget iframe.2f70fb173b9000da126c79afe2098f02.html</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="widget_iframe2f70fb173b9000da126c79afe2098f02html" onclick="toggleLearned('widget_iframe2f70fb173b9000da126c79afe2098f02html')">
+вивчено
+</label>
+
+<span class="star" id="star_widget_iframe2f70fb173b9000da126c79afe2098f02html" data-id="widget_iframe2f70fb173b9000da126c79afe2098f02html" onclick="toggleStar('widget_iframe2f70fb173b9000da126c79afe2098f02html')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="widgets.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">widgets.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="widgetsjs_" onclick="toggleLearned('widgetsjs_')">
+вивчено
+</label>
+
+<span class="star" id="star_widgetsjs_" data-id="widgetsjs_" onclick="toggleStar('widgetsjs_')">☆</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<a class="cardlink" href="xml.js.Без названия" target="_blank">
+
+<div class="icon">📄</div>
+<div class="title">xml.js.Без названия</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="xmljs_" onclick="toggleLearned('xmljs_')">
+вивчено
+</label>
+
+<span class="star" id="star_xmljs_" data-id="xmljs_" onclick="toggleStar('xmljs_')">☆</span>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+function toggleTheme(){
+
+if(document.documentElement.classList.contains("dark")){
+document.documentElement.classList.remove("dark")
+localStorage.setItem("theme","light")
+}else{
+document.documentElement.classList.add("dark")
+localStorage.setItem("theme","dark")
+}
+
+}
+
+function searchFiles(){
+
+let input=document.getElementById("search").value.toLowerCase()
+let cards=document.querySelectorAll(".card")
+
+cards.forEach(c=>{
+if(c.innerText.toLowerCase().includes(input))
+c.style.display=""
+else
+c.style.display="none"
+})
+
+}
+
+function toggleLearned(id){
+
+let box=document.getElementById(id)
+
+if(box.checked)
+localStorage.setItem("done_"+id,"1")
+else
+localStorage.removeItem("done_"+id)
+
+updateProgress()
+
+}
+
+function toggleStar(id){
+
+let star=document.getElementById("star_"+id)
+
+if(localStorage.getItem("star_"+id)){
+localStorage.removeItem("star_"+id)
+star.innerText="☆"
+}else{
+localStorage.setItem("star_"+id,"1")
+star.innerText="⭐"
+}
+
+}
+
+function loadState(){
+
+document.querySelectorAll(".learnbox").forEach(box=>{
+if(localStorage.getItem("done_"+box.id))
+box.checked=true
+})
+
+document.querySelectorAll(".star").forEach(s=>{
+let id=s.dataset.id
+if(localStorage.getItem("star_"+id))
+s.innerText="⭐"
+})
+
+updateProgress()
+
+}
+
+function updateProgress(){
+
+let boxes=document.querySelectorAll(".learnbox")
+
+let done=0
+boxes.forEach(b=>{
+if(localStorage.getItem("done_"+b.id))
+done++
+})
+
+let percent=0
+if(boxes.length>0)
+percent=Math.round(done/boxes.length*100)
+
+let bar=document.getElementById("progressbar")
+if(bar) bar.style.width=percent+"%"
+
+let label=document.getElementById("progresslabel")
+if(label) label.innerText="Прогрес: "+percent+"%"
+
+}
+
+window.onload=loadState
+
+</script>
+
+
+</body>
+</html>

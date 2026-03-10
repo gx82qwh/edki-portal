@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+
+<meta charset="UTF-8">
+<title>6.4.3. Відкриті, напівзакриті, закриті стеганосистеми</title>
+
+<script>
+if(localStorage.getItem("theme")==="dark"){
+document.documentElement.classList.add("dark")
+}
+</script>
+
+
+<style>
+
+body{
+font-family:Segoe UI, Arial;
+margin:0;
+background:#f4f6fb;
+transition:0.3s;
+padding:20px;
+}
+
+.dark body{
+background:#1e1e1e;
+color:white;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+.topbar{
+position:sticky;
+top:0;
+background:white;
+padding:12px;
+display:flex;
+gap:10px;
+align-items:center;
+flex-wrap:wrap;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+z-index:100;
+}
+
+.dark .topbar{
+background:#2c2c2c;
+}
+
+.btn{
+padding:8px 14px;
+border:none;
+border-radius:8px;
+background:#1976d2;
+color:white;
+cursor:pointer;
+font-size:14px;
+}
+
+.btn:hover{
+background:#0d47a1;
+}
+
+.search{
+padding:10px;
+width:260px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+gap:18px;
+margin-top:20px;
+}
+
+.card{
+display:block;
+background:white;
+padding:18px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+transition:0.2s;
+}
+
+.dark .card{
+background:#2c2c2c;
+}
+
+.card:hover{
+transform:translateY(-3px);
+}
+
+.icon{
+font-size:28px;
+margin-bottom:8px;
+}
+
+.title{
+font-weight:600;
+word-break:break-word;
+}
+
+.progress{
+margin-top:10px;
+font-size:13px;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.star{
+cursor:pointer;
+font-size:18px;
+}
+
+.bar{
+height:8px;
+background:#ddd;
+border-radius:4px;
+margin-bottom:18px;
+margin-top:10px;
+}
+
+.bar-fill{
+height:8px;
+background:#4caf50;
+border-radius:4px;
+width:0%;
+}
+
+</style>
+
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<a class="btn" href="..\..\../main.html">🏠 Портал</a>
+<a class="btn" href="..\..\../classroom/index.html">📚 Classroom</a>
+<a class="btn" href="..\..\../moodle/index.html">🎓 Moodle</a>
+<a class="btn" href="..\..\../edki/index.html">📂 ЄДКІ</a>
+
+<button class="btn" onclick="toggleTheme()">🌙 Темна тема</button>
+
+<input id="search" class="search" onkeyup="searchFiles()" placeholder="Пошук по папці...">
+
+</div>
+
+<h1>6.4.3. Відкриті, напівзакриті, закриті стеганосистеми</h1>
+
+
+<div id="progresslabel">Прогрес: 0%</div>
+
+<div class="bar">
+<div id="progressbar" class="bar-fill"></div>
+</div>
+
+
+<div class="grid">
+
+<a class="card" href="../index.html">
+<div class="icon">⬅️</div>
+<div class="title">Назад</div>
+</a>
+
+<div class="card">
+
+<a href="ст 25-30.pdf" target="_blank">
+
+<div class="icon">📕</div>
+<div class="title">ст 25-30.pdf</div>
+
+</a>
+
+<div class="progress">
+
+<label>
+<input type="checkbox" class="learnbox" id="_2530pdf" onclick="toggleLearned('_2530pdf')">
+вивчено
+</label>
+
+<span class="star" id="star__2530pdf" data-id="_2530pdf" onclick="toggleStar('_2530pdf')">☆</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+function toggleTheme(){
+if(document.documentElement.classList.contains("dark")){
+document.documentElement.classList.remove("dark")
+localStorage.setItem("theme","light")
+}else{
+document.documentElement.classList.add("dark")
+localStorage.setItem("theme","dark")
+}
+}
+
+function searchFiles(){
+
+let input=document.getElementById("search").value.toLowerCase()
+
+let cards=document.getElementsByClassName("card")
+
+for(let i=0;i<cards.length;i++){
+
+let text=cards[i].innerText.toLowerCase()
+
+if(text.includes(input))
+cards[i].style.display=""
+else
+cards[i].style.display="none"
+
+}
+
+}
+
+function toggleLearned(id){
+
+let box=document.getElementById(id)
+
+if(box.checked)
+localStorage.setItem("done_"+id,"1")
+else
+localStorage.removeItem("done_"+id)
+
+updateProgress()
+
+}
+
+function toggleStar(id){
+
+let star=document.getElementById("star_"+id)
+
+if(localStorage.getItem("star_"+id)){
+localStorage.removeItem("star_"+id)
+star.innerText="☆"
+}else{
+localStorage.setItem("star_"+id,"1")
+star.innerText="⭐"
+}
+
+}
+
+function loadState(){
+
+document.querySelectorAll(".learnbox").forEach(box=>{
+if(localStorage.getItem("done_"+box.id))
+box.checked=true
+})
+
+document.querySelectorAll(".star").forEach(s=>{
+let id=s.dataset.id
+if(localStorage.getItem("star_"+id))
+s.innerText="⭐"
+})
+
+updateProgress()
+
+}
+
+function updateProgress(){
+
+let boxes=document.querySelectorAll(".learnbox")
+
+let done=0
+
+boxes.forEach(b=>{
+if(localStorage.getItem("done_"+b.id))
+done++
+})
+
+let percent=0
+
+if(boxes.length>0)
+percent=Math.round(done/boxes.length*100)
+
+let bar=document.getElementById("progressbar")
+
+if(bar) bar.style.width=percent+"%"
+
+let label=document.getElementById("progresslabel")
+
+if(label) label.innerText="Прогрес: "+percent+"%"
+
+}
+
+window.onload=loadState
+
+</script>
+
+
+</body>
+</html>

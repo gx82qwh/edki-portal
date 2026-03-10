@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)https://devzone.org.ua/post/iak-vynykaiut-pomylky-v-obchyslenniakh-z-plavaiuchoiu-komoiu -->
+<html lang="uk" data-mode="dark" data-custom-mode="0"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Як виникають помилки в обчисленнях з рухомою комою? | DevZone</title>
+    <meta name="description" content="Ви коли-небудь працювали з такими числами, як 1/3, де результат дорівнює 0,33333... і так до нескінченності? Як люди, ми природно округлюємо такі числа, але чи...">
+    <meta name="keywords" content="програмування,javascript,float">
+    <meta name="csrf-token" content="JssFBhemNBroJK4gDaFp4kV26hrVzdGYgxLNqGlz">
+    
+    <meta property="og:locale" content="uk">
+        <link rel="alternate" type="application/atom+xml" href="https://devzone.org.ua/feed" title="DevZone">
+    <link rel="alternate" type="application/atom+xml" href="https://devzone.org.ua/qna-feed" title="DevZone QnA">
+    <link rel="alternate" type="application/atom+xml" href="https://devzone.org.ua/topic-feed" title="DevZone Topic">
+
+                <meta property="og:site_name" content="DevZone">
+            <meta property="og:type" content="article">
+            <meta property="og:title" content="Як виникають помилки в обчисленнях з рухомою комою?">
+            <meta property="og:description" content="Ви коли-небудь працювали з такими числами, як `1/3`, де результат дорівнює `0,33333`... і так до нескінченності? Як люди, ми природно округлюємо такі числа, але чи замислювалися ви коли-небудь, як з н...">
+            <meta property="og:image" content="https://devzone.org.ua/storage/posts/2024/10/27/pfO9I1oXGz3QGE8EHwovLpk69AXNFffW3iImLKph.webp">
+            <meta property="og:url" content="https://devzone.org.ua/post/iak-vynykaiut-pomylky-v-obchyslenniakh-z-plavaiuchoiu-komoiu">
+            <meta property="article:published_time" content="2024-10-28T08:32:23+00:00">
+            <meta property="article:modified_time" content="2026-03-09T15:37:38+00:00">
+            <meta property="article:publisher" content="https://devzone.org.ua/member/alex">
+            <meta property="og:updated_time" content="2026-03-09T15:37:38+00:00">
+            <link rel="canonical" href="https://devzone.org.ua/post/iak-vynykaiut-pomylky-v-obchyslenniakh-z-plavaiuchoiu-komoiu">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+{"@context":"https:\/\/schema.org","@type":"Article","headline":"\u042f\u043a \u0432\u0438\u043d\u0438\u043a\u0430\u044e\u0442\u044c \u043f\u043e\u043c\u0438\u043b\u043a\u0438 \u0432 \u043e\u0431\u0447\u0438\u0441\u043b\u0435\u043d\u043d\u044f\u0445 \u0437 \u0440\u0443\u0445\u043e\u043c\u043e\u044e \u043a\u043e\u043c\u043e\u044e?","image":"https:\/\/img.devzone.org.ua\/_\/resize:fill:800\/plain\/https%3A%2F%2Fdevzone.org.ua%2Fstorage%2Fposts%2F2024%2F10%2F27%2FpfO9I1oXGz3QGE8EHwovLpk69AXNFffW3iImLKph.webp@avif","datePublished":"2024-10-28T08:32:23+00:00","dateModified":"2026-03-09T15:37:38+00:00","keywords":"\u043f\u0440\u043e\u0433\u0440\u0430\u043c\u0443\u0432\u0430\u043d\u043d\u044f,javascript,float","wordcount":981,"url":"https:\/\/devzone.org.ua\/post\/iak-vynykaiut-pomylky-v-obchyslenniakh-z-plavaiuchoiu-komoiu","mainEntityOfPage":"https:\/\/devzone.org.ua\/post\/iak-vynykaiut-pomylky-v-obchyslenniakh-z-plavaiuchoiu-komoiu","author":{"@type":"Person","name ":"Alex","url":"https:\/\/devzone.org.ua\/member\/alex","image":"https:\/\/img.devzone.org.ua\/_\/resize:fill:200\/plain\/https%3A%2F%2Fdevzone.org.ua%2Fstorage%2Fusers%2F2023%2F09%2F15%2F11%2F9hwqo6Xr9ARcZ97G8Og8BBUeOUjj3reIlSzUfRtS.webp@avif"},"publisher":{"@type":"Organization","name":"DevZone","logo":{"@type":"ImageObject","url":"https:\/\/devzone.org.ua\/storage\/settings\/September2019\/gFoLPZqqcoHOCIY8PWhT.png"}},"description":"\u0412\u0438 \u043a\u043e\u043b\u0438-\u043d\u0435\u0431\u0443\u0434\u044c \u043f\u0440\u0430\u0446\u044e\u0432\u0430\u043b\u0438 \u0437 \u0442\u0430\u043a\u0438\u043c\u0438 \u0447\u0438\u0441\u043b\u0430\u043c\u0438, \u044f\u043a `1\/3`, \u0434\u0435 \u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442 \u0434\u043e\u0440\u0456\u0432\u043d\u044e\u0454 `0,33333`... \u0456 \u0442\u0430\u043a \u0434\u043e \u043d\u0435\u0441\u043a\u0456\u043d\u0447\u0435\u043d\u043d\u043e\u0441\u0442\u0456? \u042f\u043a \u043b\u044e\u0434\u0438, \u043c\u0438 \u043f\u0440\u0438\u0440\u043e\u0434\u043d\u043e \u043e\u043a\u0440\u0443\u0433\u043b\u044e\u0454\u043c\u043e \u0442\u0430\u043a\u0456 \u0447\u0438\u0441\u043b\u0430, \u0430\u043b\u0435 \u0447\u0438 \u0437\u0430\u043c\u0438\u0441\u043b\u044e\u0432\u0430\u043b\u0438\u0441\u044f \u0432\u0438 \u043a\u043e\u043b\u0438-\u043d\u0435\u0431\u0443\u0434\u044c, \u044f\u043a \u0437 \u043d..."}
+</script>
+
+            <meta name="theme-color" content="#15a1ed">
+        <link rel="icon" type="image/x-icon" href="https://devzone.org.ua/storage/settings/September2019/BAjx5bHzjQ4RGINDzpNA.png" sizes="32x32">
+    
+    <link rel="stylesheet" href="./Як виникають помилки в обчисленнях з рухомою комою_ _ DevZone_files/app.css">
+
+        <script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "https://devzone.org.ua",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://devzone.org.ua/search?query={search_term}",
+        "query-input": "required name=search_term"
+    },
+    "sameAs" : ["https:\/\/www.facebook.com\/DevZoneUA","https:\/\/t.me\/DevZoneOrgUA","https:\/\/bsky.app\/profile\/devzone.org.ua","https:\/\/mastodon.social\/@DevZone","https:\/\/devzone.org.ua\/feed"]
+    }
+    </script>
+
+                    <script>
+        function imgLoadFailed(that, img = "https://devzone.org.ua/storage/settings/November2019/CTX7FQS8ehfIJ0q902B0.jpg") {
+            that.target.src = img;
+            that.target.onerror = null;
+        }
+        window.img_proxy_url = "https://img.devzone.org.ua";
+    </script>
+
+            <script src="./Як виникають помилки в обчисленнях з рухомою комою_ _ DevZone_files/highlight.min.js.Без названия" defer=""></script>
+    
+    
+    
+
+    
+    <script src="./Як виникають помилки в обчисленнях з рухомою комою_ _ DevZone_files/app.js.Без названия" defer=""></script>
+</head>
+
+<body data-ajax="1">
+    <nav id="MagicMenu" class="topnav navbar navbar-expand-lg fixed-top nav-up" style="top: -60px;">
+        <div class="container">
+            <a class="navbar-brand ajax-link" href="https://devzone.org.ua/">
+                <strong>DevZone</strong>
+                            </a>
+                        <form action="https://devzone.org.ua/set/mode/light" method="POST" class="toggle-mode text-muted inline p-0" title="Перемикач темної теми">
+                <input type="hidden" name="_token" value="JssFBhemNBroJK4gDaFp4kV26hrVzdGYgxLNqGlz" autocomplete="off">
+                <button type="submit" class="btn btn-link text-muted p-0">
+                    <i class="fa icon-sun"></i>
+                    <i class="fa icon-moon"></i>
+                </button>
+            </form>
+
+            
+            <button class="navbar-toggler collapsed collapse-toggle" type="button" data-toggle="collapse" href="#navbarMobile" aria-label="Відкрити блок меню">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarMobile">
+                <ul class="navbar-nav mr-auto d-flex">
+                    <li class="nav-item ">
+                <a class="nav-link ajax-link" href="https://devzone.org.ua/qna" target="_self">
+                                        Q&amp;A
+                </a>
+            </li>
+                                    <li class="nav-item ">
+                <a class="nav-link ajax-link" href="https://devzone.org.ua/topics" target="_self">
+                                        Теми
+                </a>
+            </li>
+                                    <li class="nav-item ">
+                <a class="nav-link ajax-link" href="https://devzone.org.ua/comments" target="_self">
+                                        Коментарі
+                </a>
+            </li>
+                                    <li class="nav-item ">
+                <a class="nav-link ajax-link" href="https://devzone.org.ua/tags" target="_self">
+                                        Теги
+                </a>
+            </li>
+                                    <li class="nav-item ">
+                <a class="nav-link ajax-link" href="https://devzone.org.ua/members" target="_self">
+                                        Люди
+                </a>
+            </li>
+                                    <li class="nav-item dropdown dropdown-hover">
+                <a id="mainDrop65" class="nav-link dropdown-toggle" href="https://devzone.org.ua/post/iak-vynykaiut-pomylky-v-obchyslenniakh-z-plavaiuchoiu-komoiu#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre="">
+                                            <i class="fa icon-plus-circled" style="color:#2ec25a"></i>
+                                        Додати<span class="caret"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="mainDrop65">
+                                                                    <a class="dropdown-item ajax-link" href="https://devzone.org.ua/write" target="_self">
+                                                            <i class="fa icon-feather" style="color:#2465ff"></i>
+                                                        Статтю
+                        </a>
+                                                                                            <a class="dropdown-item ajax-link" href="https://devzone.org.ua/question/add" target="_self">
+                                                            <i class="fa icon-help-circled" style="color:#f0a119"></i>
+                                                        Питання
+                        </a>
+                                                                                            <a class="dropdown-item ajax-link" href="https://devzone.org.ua/topics/add" target="_self">
+                                                            <i class="fa icon-link-ext" style="color:#35bdff"></i>
+                                                        Тему
+                        </a>
+                                                            </div>
+            </li>
+            
+                                            <li class="nav-item">
+                            <a class="nav-link ajax-link" href="https://devzone.org.ua/login" rel="nofollow">
+                                <i class="fa icon-login"></i> Вхід
+                            </a>
+                        </li>
+                                    </ul>
+                <ul class="navbar-nav ml-auto d-flex">
+                    <form class="bd-search hidden-sm-down ajax-form-page has-clear" action="https://devzone.org.ua/search" method="GET">
+                        <input type="text" class="form-control text-small" id="search_query" name="query" value="" placeholder="пошук..." minlength="3">
+                        <input type="hidden" name="type" value="">
+                        <i class="fa icon-times search-clear mt-2"></i>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="site-content" id="main-content">
+                    <div class="container-lg">
+        <div class="row justify-content-center drow">
+            <div class="col-lg-7 col-md-10 col-sm-12 text-wrap p-0">
+                <h1 class="display-4 mb-4 article-headline text-center">
+                    Як виникають помилки в обчисленнях з рухомою комою?
+                </h1>
+                                    <div class="zoom text-center mb-3">
+                        <img src="./Як виникають помилки в обчисленнях з рухомою комою_ _ DevZone_files/pfO9I1oXGz3QGE8EHwovLpk69AXNFffW3iImLKph.webp" class="post-image" alt="Як виникають помилки в обчисленнях з рухомою комою?" loading="lazy" onerror="this.onerror=imgLoadFailed; this.src=&#39;https://devzone.org.ua/storage/posts/2024/10/27/pfO9I1oXGz3QGE8EHwovLpk69AXNFffW3iImLKph.webp&#39;">
+                    </div>
+                                <div class="border-bottom pb-2 pl-2 pr-2">
+                    <div class="float-right">
+                                                    <a class="badge badge-light font-sm ajax-link" href="https://www.freecodecamp.org/news/what-is-a-floating-point-arithmetic-problem/" rel="nofollow" target="_blank">
+                                Переклад
+                            </a>
+                                                <small class="text-muted">
+                            <i class="icon-clock"></i>
+                            7 хв. читання
+                        </small>
+                    </div>
+                    <div class="linline">
+    <div class="float-left mr-2" style="width:36px">
+        <a class="ajax-link" href="https://devzone.org.ua/member/alex">
+            <img src="./Як виникають помилки в обчисленнях з рухомою комою_ _ DevZone_files/9hwqo6Xr9ARcZ97G8Og8BBUeOUjj3reIlSzUfRtS.avif" class="rounded-circle avatar" width="36" height="36" loading="lazy" onerror="this.onerror=imgLoadFailed; this.src=&#39;https://devzone.org.ua/storage/users/2023/09/15/11/9hwqo6Xr9ARcZ97G8Og8BBUeOUjj3reIlSzUfRtS.webp&#39;">
+        </a>
+    </div>
+
+    <div class="lh1">
+        <div>
+            <a class="ajax-link" href="https://devzone.org.ua/member/alex">
+                <b class="font-sm">Alex</b>
+            </a>
+            <a class="btn btn-xxs btn-link font-weight-bold ajax-link" href="https://devzone.org.ua/login" rel="nofollow">
+    Підписатись
+</a>
+        </div>
+                <div>
+            <small datetime="2024-10-28T08:32:23+00:00" class="text-muted">
+                28 жовтня 2024
+                            </small>
+        </div>
+    </div>
+</div>
+                </div>
+
+                <div class="pb-2 pt-2 mb-2 pl-2 pr-2 text-muted sticky-top bg-body z-100 border-bottom" id="sticky-bar">
+                    <div class="float-right">
+                                                <span class="dropdown dropdown-hover">
+      <button class="btn btn-light btn-round dropdown-toggle btn-xs" type="button">
+        <i class="icon-share"></i>
+      </button>
+      <div class="dropdown-menu">
+                    <a target="_blank" href="https://bsky.app/intent/compose?text=%D0%AF%D0%BA+%D0%B2%D0%B8%D0%BD%D0%B8%D0%BA%D0%B0%D1%8E%D1%82%D1%8C+%D0%BF%D0%BE%D0%BC%D0%B8%D0%BB%D0%BA%D0%B8+%D0%B2+%D0%BE%D0%B1%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F%D1%85+%D0%B7+%D1%80%D1%83%D1%85%D0%BE%D0%BC%D0%BE%D1%8E+%D0%BA%D0%BE%D0%BC%D0%BE%D1%8E%3F%0A%23%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F+%23javascript+%23float%0Ahttps://devzone.org.ua/post/iak-vynykaiut-pomylky-v-obchyslenniakh-z-plavaiuchoiu-komoiu" rel="nofollow" class="share-link dropdown-item" title="BlueSky">
+                <i class="bluesky-color fa icon-bluesky"></i> BlueSky
+            </a>
+                    <a target="_blank" href="https://twitter.com/intent/tweet?text=%D0%AF%D0%BA+%D0%B2%D0%B8%D0%BD%D0%B8%D0%BA%D0%B0%D1%8E%D1%82%D1%8C+%D0%BF%D0%BE%D0%BC%D0%B8%D0%BB%D0%BA%D0%B8+%D0%B2+%D0%BE%D0%B1%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F%D1%85+%D0%B7+%D1%80%D1%83%D1%85%D0%BE%D0%BC%D0%BE%D1%8E+%D0%BA%D0%BE%D0%BC%D0%BE%D1%8E%3F%0a%23%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F+%23javascript+%23float%0a&amp;url=https://devzone.org.ua/post/iak-vynykaiut-pomylky-v-obchyslenniakh-z-plavaiuchoiu-komoiu" rel="nofollow" class="share-link dropdown-item" title="Twitter">
+                <i class="twitter-color fa icon-twitter"></i> Twitter
+            </a>
+                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://devzone.org.ua/post/iak-vynykaiut-pomylky-v-obchyslenniakh-z-plavaiuchoiu-komoiu" rel="nofollow" class="share-link dropdown-item" title="Facebook">
+                <i class="facebook-color fa icon-facebook"></i> Facebook
+            </a>
+                    <a target="_blank" href="https://www.reddit.com/submit?url=https://devzone.org.ua/post/iak-vynykaiut-pomylky-v-obchyslenniakh-z-plavaiuchoiu-komoiu&amp;title=%D0%AF%D0%BA+%D0%B2%D0%B8%D0%BD%D0%B8%D0%BA%D0%B0%D1%8E%D1%82%D1%8C+%D0%BF%D0%BE%D0%BC%D0%B8%D0%BB%D0%BA%D0%B8+%D0%B2+%D0%BE%D0%B1%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F%D1%85+%D0%B7+%D1%80%D1%83%D1%85%D0%BE%D0%BC%D0%BE%D1%8E+%D0%BA%D0%BE%D0%BC%D0%BE%D1%8E%3F" rel="nofollow" class="share-link dropdown-item" title="Reddit">
+                <i class="reddit-color fa icon-reddit"></i> Reddit
+            </a>
+                    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://devzone.org.ua/post/iak-vynykaiut-pomylky-v-obchyslenniakh-z-plavaiuchoiu-komoiu&amp;title=%D0%AF%D0%BA+%D0%B2%D0%B8%D0%BD%D0%B8%D0%BA%D0%B0%D1%8E%D1%82%D1%8C+%D0%BF%D0%BE%D0%BC%D0%B8%D0%BB%D0%BA%D0%B8+%D0%B2+%D0%BE%D0%B1%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F%D1%85+%D0%B7+%D1%80%D1%83%D1%85%D0%BE%D0%BC%D0%BE%D1%8E+%D0%BA%D0%BE%D0%BC%D0%BE%D1%8E%3F" rel="nofollow" class="share-link dropdown-item" title="LinkedIn">
+                <i class="linkedin-color fa icon-linkedin"></i> LinkedIn
+            </a>
+                    <a target="_blank" href="https://telegram.me/share/url?url=https://devzone.org.ua/post/iak-vynykaiut-pomylky-v-obchyslenniakh-z-plavaiuchoiu-komoiu&amp;text=%D0%AF%D0%BA+%D0%B2%D0%B8%D0%BD%D0%B8%D0%BA%D0%B0%D1%8E%D1%82%D1%8C+%D0%BF%D0%BE%D0%BC%D0%B8%D0%BB%D0%BA%D0%B8+%D0%B2+%D0%BE%D0%B1%D1%87%D0%B8%D1%81%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F%D1%85+%D0%B7+%D1%80%D1%83%D1%85%D0%BE%D0%BC%D0%BE%D1%8E+%D0%BA%D0%BE%D0%BC%D0%BE%D1%8E%3F" rel="nofollow" class="share-link dropdown-item" title="Telegram">
+                <i class="telegram-color fa icon-telegram"></i> Telegram
+            </a>
+                    <a target="_blank" href="https://api.whatsapp.com/send/?text=https://devzone.org.ua/post/iak-vynykaiut-pomylky-v-obchyslenniakh-z-plavaiuchoiu-komoiu&amp;type=custom_url&amp;app_absent=0" rel="nofollow" class="share-link dropdown-item" title="Whatsapp">
+                <i class="whatsapp-color fa icon-whatsapp"></i> Whatsapp
+            </a>
+            </div>
+</span>
+                    </div>
+                    <span class="vote">
+    <form method="POST" class="ajax-vote inline" data-id="40043" data-vote="up" action="https://devzone.org.ua/vote/post/40043/up">
+    <input type="hidden" name="_token" value="JssFBhemNBroJK4gDaFp4kV26hrVzdGYgxLNqGlz" autocomplete="off">    <button type="submit" class="btn btn-link btn-sm p-0  text-muted vote_up vc40043">
+        <i class="fa icon-thumbs-up"></i>
+    </button>
+    </form>
+</span>
+
+<a class="vote-count text-muted font-weight-bold ajax-modal" id="vc40043" href="https://devzone.org.ua/votes/show/post/40043" rel="nofollow" aria-label="Показати хто ще лайкнув">
+    0
+</a>
+
+<span class="vote">
+    <form method="POST" class="ajax-vote inline" data-id="40043" data-vote="down" action="https://devzone.org.ua/vote/post/40043/down">
+    <input type="hidden" name="_token" value="JssFBhemNBroJK4gDaFp4kV26hrVzdGYgxLNqGlz" autocomplete="off">    <button type="submit" class="btn btn-sm p-0 btn-link  text-muted vote_down vc40043">
+        <i class="fa icon-thumbs-down"></i>
+    </button>
+    </form>
+</span>
+ ·
+                    <span id="view-cnt" data-url="/post-view/40043" data-id="40043" data-type="posts" title="Переглядів">
+                        <i class="fa icon-eye"></i>
+                        429
+                    </span> ·
+                    <a class="text-muted" href="https://devzone.org.ua/post/iak-vynykaiut-pomylky-v-obchyslenniakh-z-plavaiuchoiu-komoiu#comments">
+                        <i class="fa icon-comment"></i>
+                        0
+                    </a> ·
+                    <span>
+    <form method="POST" class="ajax-bookmark inline" data-mark="1" action="https://devzone.org.ua/bookmark/post/40043?mark=1">
+    <input type="hidden" name="_token" value="JssFBhemNBroJK4gDaFp4kV26hrVzdGYgxLNqGlz" autocomplete="off">    <button type="submit" class="btn btn-sm p-0 btn-link" title="Додати в закладки">
+        <i class="fa icon-bookmark-empty text-muted "></i>
+    </button>
+    </form>
+</span>
+                </div>
+
+                <article class="article-post zoom post ml-3 mr-3">
+                                        <p>Ви коли-небудь працювали з такими числами, як <code>1/3</code>, де результат дорівнює <code>0,33333</code>... і так до нескінченності? Як люди, ми природно округлюємо такі числа, але чи замислювалися ви коли-небудь, як з ними працюють комп'ютери?</p>
+<p>У цій статті ви дізнаєтесь, як комп'ютери працюють з неперервними значеннями, включаючи поняття похибки точності. Ми розглянемо проблему арифметики з рухомою комою - універсальну проблему, яка впливає на багато мов програмування. Ми зосередимося на тому, як JavaScript підходить до розв'язання цієї проблеми.</p>
+<p>Крім того, ви дізнаєтеся, як за лаштунками працюють двійкові операції, поріг, при якому JavaScript усікає числа на основі стандарту IEEE 754, а також познайомитеся з <code>BigInt</code> як рішенням для точної обробки великих чисел без втрати точності.</p>
+<p>Для початку розглянемо приклад. Чи можете ви вгадати результат цієї операції?</p>
+<pre style="position: relative;"><div class="language-label">apache</div><code data-highlighted="yes" class="hljs language-apache"><span class="hljs-attribute">console</span>.log(<span class="hljs-number">0</span>.<span class="hljs-number">1</span> + <span class="hljs-number">0</span>.<span class="hljs-number">2</span>);
+</code></pre>
+<p>Ви можете подумати, що відповідь дорівнює <code>0,3</code>, так? Але ні, фактичний результат такий:</p>
+<pre style="position: relative;"><div class="language-label">apache</div><code data-highlighted="yes" class="hljs language-apache"><span class="hljs-attribute">Output</span>: <span class="hljs-number">0</span>.<span class="hljs-number">30000000000000004</span>
+</code></pre>
+<p>Вам, мабуть, цікаво, чому так відбувається. Чому так багато зайвих нулів і чому число закінчується на 4?</p>
+<p>Відповідь проста: числа <code>0.1</code> і <code>0.2</code> не можуть бути точно представлені в JavaScript.</p>
+<p>Звучить просто, чи не так? Але пояснення трохи складніше.</p>
+<p>Як ви думаєте, що це - баг чи особливість?</p>
+<p>Ну, це не баг. Насправді це фундаментальна проблема з тим, як комп'ютери працюють з числами, особливо з числами з рухомою комою.</p>
+<h2>Чому так відбувається?</h2>
+<p>Давайте розберемося з цим за допомогою елементарної математики.</p>
+<p>Коли ви додаєте <code>0.1</code> і <code>0.2</code>, це має дорівнювати <code>0.3</code>. Однак у комп'ютерних системах десяткові числа, такі як <code>0.1</code> і <code>0.2</code>, представлені приблизно, оскільки вони не можуть зберігатися точно у двійковій формі. В результаті, додавання <code>0.1</code> і <code>0.2</code> може дати щось на кшталт <code>0.30000000000000004</code> замість <code>0.3</code>.</p>
+<p>Ця проблема виникає через те, що багато десяткових дробів не мають точного представлення у двійковій системі числення, наприклад  <code>1/3  (0.3333...)</code> не може бути точно записане в десятковій формі і натомість повторюється нескінченно. Комп'ютери змушені апроксимувати такі числа, як <code>0.1</code> і <code>0.2</code>, що може призвести до крихітних помилок округлення в обчисленнях.</p>
+<p>Це призводить до того, що ми називаємо проблемою арифметики з рухомою комою.</p>
+<h2>Проблема арифметики з рухомою комою</h2>
+<p>Простіше кажучи, числа з рухомою комою - це числа, які неможливо записати точно, тому ми їх наближено обчислюємо. У комп'ютері таке наближення може призвести до невеликих похибок, які ми називаємо проблемою арифметики з рухомою комою.</p>
+<h2>Пояснення з використанням двійкового коду</h2>
+<p>Тепер, коли ми розглянули просте пояснення, давайте розберемося з двійковим кодом. За лаштунками JavaScript обробляє все в двійковому форматі.</p>
+<p>Двійкова система числення - це система числення, яка використовує лише дві цифри: <code>0</code> і <code>1</code>.</p>
+<h2>Чому 0.1 і 0.2 не можуть бути представлені саме в двійковій системі числення?</h2>
+<p>Основна проблема полягає в тому, що не всі десяткові числа можна ідеально представити у вигляді двійкового дробу.</p>
+<p>Візьмемо для прикладу <code>0.1</code>:</p>
+<p>Коли ви спробуєте представити <code>0.1</code> у двійковому вигляді, ви побачите, що воно не може бути виражене у вигляді скінченного двійкового дробу. Замість цього він стає повторюваним дробом, подібно до того, як <code>1/3</code> в десятковій системі числення перетворюється на <code>0,333...</code>, повторюючись до нескінченності.</p>
+<p>У двійковій системі числення - <code>0.1</code> стає:</p>
+<pre style="position: relative;"><div class="language-label">apache</div><code data-highlighted="yes" class="hljs language-apache"><span class="hljs-attribute">0</span>.<span class="hljs-number">0001100110011001100110011001100110011</span>... (повторюється нескінченно)
+</code></pre>
+<p>Оскільки комп'ютери мають обмежену пам'ять, вони не можуть точно зберігати цю нескінченну послідовність. Замість цього вони змушені обрізати число в певному місці, що вносить невелику похибку округлення. Ось чому <code>0.1</code> у двійковому коді є лише наближенням до реального значення.</p>
+<p>Як і <code>0.1</code>, <code>0.2</code> не може бути точно представлено в двійковому коді. Воно стає:</p>
+<pre style="position: relative;"><div class="language-label">apache</div><code data-highlighted="yes" class="hljs language-apache"><span class="hljs-attribute">0</span>.<span class="hljs-number">00110011001100110011001100110011</span>... (повторюється нескінченно)
+</code></pre>
+<p>Знову ж таки, комп'ютер відсікає (відрізає частину числа, щоб вкластися в обмеження або видаляє зайві цифри) цю нескінченну двійкову послідовність, що призводить до невеликої помилки в представленні.</p>
+<h3>Отже, що відбувається, коли ми додаємо <code>0.1 + 0.2</code>?</h3>
+<p>Коли ви додаєте <code>0.1 + 0.2</code> в JavaScript, бінарні наближення для <code>0.1</code> і <code>0.2</code> додаються разом. Але оскільки обидва значення є лише наближеннями, результат також є наближенням.</p>
+<p>Замість того, щоб отримати точно <code>0.3</code>, ви отримаєте щось близьке до цього:</p>
+<pre style="position: relative;"><div class="language-label">apache</div><code data-highlighted="yes" class="hljs language-apache"><span class="hljs-attribute">console</span>.log(<span class="hljs-number">0</span>.<span class="hljs-number">1</span> + <span class="hljs-number">0</span>.<span class="hljs-number">2</span>); // Output: <span class="hljs-number">0</span>.<span class="hljs-number">30000000000000004</span>
+</code></pre>
+<p>Ця незначна помилка виникає через те, що ні <code>0.1</code>, ні <code>0.2</code> не можуть бути точно представлені в двійковій системі числення, тому кінцевий результат має невелику похибку округлення.</p>
+<h2>Як JavaScript скорочує число?</h2>
+<p>Тепер виникає питання: звідки JavaScript знає, коли потрібно усікати значення?</p>
+<p>(Усічення означає відсікання або скорочення числа шляхом видалення зайвих цифр після певної точки. )</p>
+<p>Для цього існує максимальна і мінімальна межа.</p>
+<p>Для вирішення цієї проблеми в комп'ютерному світі існує стандарт, який визначає, як зберігаються та обчислюються числа з рухомою комою.</p>
+<h2>Стандарт IEEE 754</h2>
+<p>JavaScript використовує стандарт IEEE 754 для обробки арифметики з рухомою комою.</p>
+<p>Стандарт визначає безпечні межі цілих чисел для типу Number в JavaScript без втрати точності:</p>
+<ul>
+<li>Максимальне допустиме ціле число: <code>2^53 - 1</code> або <code>9007199254740991</code></li>
+<li>Мінімальне допустиме ціле число: <code>-(2^53 - 1)</code> або <code>-9007199254740991</code></li>
+</ul>
+<p>Поза цими межами JavaScript не може точно представляти цілі числа через те, що так працює арифметика з рухомою комою.</p>
+<p>З цієї причини JavaScript надає дві константи для представлення цих обмежень:</p>
+<ul>
+<li><code>Number.MAX_SAFE_INTEGER</code></li>
+<li><code>Number.MIN_SAFE_INTEGER</code></li>
+</ul>
+<h2>Що робити, якщо треба більше число?</h2>
+<p>Якщо вам потрібно працювати з числами, більшими за Максимально допустиме безпечне ціле число (наприклад, з тими, що використовуються у криптографії або фінансах), JavaScript має рішення: <code>BigInt</code>.</p>
+<p><code>BigInt</code> - це вбудований об'єкт, який дозволяє працювати з цілими числами за межею безпечного цілого. Він дозволяє представляти числа, більші за <code>9007199254740991</code>, тому вам не доведеться хвилюватися про похибки точності!</p>
+<p>Щоб використовувати <code>BigInt</code>, просто додайте n в кінець цілого літералу:</p>
+<pre style="position: relative;"><div class="language-label">apache</div><code data-highlighted="yes" class="hljs language-apache"><span class="hljs-attribute">const</span> bigNumber = <span class="hljs-number">1234567890123456789012345678901234567890</span>n;
+</code></pre>
+<p>Крім того, ви можете скористатися конструктором <code>BigInt</code>:</p>
+<pre style="position: relative;"><div class="language-label">javascript</div><code data-highlighted="yes" class="hljs language-javascript"><span class="hljs-keyword">const</span> bigNumber = <span class="hljs-title class_">BigInt</span>(<span class="hljs-string">"1234567890123456789012345678901234567890"</span>);
+</code></pre>
+<h3>Операції з BigInt</h3>
+<p>З <code>BigInt</code> можна виконувати арифметичні операції, такі як додавання, віднімання, множення і навіть піднесення до степеня. Однак є один нюанс: в арифметичних операціях не можна змішувати <code>BigInt</code> зі звичайними типами <code>Number</code> без явного перетворення між ними.</p>
+<p>Наприклад, це не спрацює:</p>
+<pre style="position: relative;"><div class="language-label">csharp</div><code data-highlighted="yes" class="hljs language-csharp"><span class="hljs-keyword">let</span> result = bigNumber + <span class="hljs-number">5</span>; <span class="hljs-comment">// Error: cannot mix BigInt and other types</span>
+</code></pre>
+<p>Спочатку потрібно перетворити число у тип BigInt:</p>
+<pre style="position: relative;"><div class="language-label">javascript</div><code data-highlighted="yes" class="hljs language-javascript"><span class="hljs-keyword">let</span> result = bigNumber + <span class="hljs-title class_">BigInt</span>(<span class="hljs-number">5</span>); <span class="hljs-comment">// Now it works!</span>
+</code></pre>
+<h3>Де можна використовувати BigInt?</h3>
+<p><code>BigInt</code> особливо корисний в областях, що вимагають точності, таких як:</p>
+<ul>
+<li>Криптографічні алгоритми</li>
+<li>Обробка великих масивів даних</li>
+<li>Фінансові розрахунки, що вимагають точності</li>
+</ul>
+<h2>Підсумок</h2>
+<p>Безпечна межа цілих чисел у JavaScript забезпечує точне представлення чисел між <code>-(2^53 - 1)</code> та <code>2^53 - 1</code>.</p>
+<p>Помилки точності виникають через арифметику з рухомою комою при обробці певних чисел (наприклад, <code>0.1 + 0.2</code>).</p>
+<p>Якщо вам потрібні числа більші за безпечну межу, <code>BigInt</code> - ваш друг. Але пам'ятайте, що змішування типів <code>BigInt</code> і <code>Number</code> вимагає явного перетворення.</p>
+                </article>
+
+
+                                    <blockquote class="blue ml-3 mr-3">
+                        Джерело:
+                        <a href="https://www.freecodecamp.org/news/what-is-a-floating-point-arithmetic-problem/" rel="nofollow" target="_blank">
+                            What is a Floating-Point Arithmetic Problem?
+                        </a>
+                    </blockquote>
+                
+                                    <div class="mb-0 ml-3 mr-3">
+                        <h5 class="taglist">
+            <a class="sscroll badge badge-light ajax-link" href="https://devzone.org.ua/tag/%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D1%83%D0%B2%D0%B0%D0%BD%D0%BD%D1%8F">програмування</a>
+            <a class="sscroll badge badge-light ajax-link" href="https://devzone.org.ua/tag/javascript">javascript</a>
+            <a class="sscroll badge badge-light ajax-link" href="https://devzone.org.ua/tag/float">float</a>
+    </h5>
+                    </div>
+                
+                <div class="text-center font-sm dimm mb-0 mt-0">Помітили помилку? Повідомте автору, для цього достатньо виділити текст з помилкою та натиснути Ctrl+Enter</div>
+
+                <div class="ml-3 mr-3 mt-0">
+                    <div class="mt-3 mb-4 p-0 card border-0 cardwithshadow onhoverup">
+    <div class="card-body p-3">
+        <div class="float-left mr-4" style="width:100px">
+            <a class="ajax-link" href="https://devzone.org.ua/member/alex">
+                <img src="./Як виникають помилки в обчисленнях з рухомою комою_ _ DevZone_files/9hwqo6Xr9ARcZ97G8Og8BBUeOUjj3reIlSzUfRtS(1).avif" class="avatar rounded-circle" loading="lazy" onerror="this.onerror=imgLoadFailed; this.src=&#39;https://devzone.org.ua/storage/users/2023/09/15/11/9hwqo6Xr9ARcZ97G8Og8BBUeOUjj3reIlSzUfRtS.webp&#39;">
+            </a>
+        </div>
+
+        <div class="">
+            <div class="float-right">
+                <a class="btn btn-xs btn-primary ajax-link" href="https://devzone.org.ua/login" rel="nofollow">
+    Підписатись
+</a>
+            </div>
+            <a class="text-muted ajax-link" href="https://devzone.org.ua/member/alex">
+                <h5>
+                    <span class="text-capitalize">Alex</span>
+                    <small>
+                        <small class="text-success" title="Рейтинг">
+    <i class="fa icon-star"></i> 1K
+</small>
+                    </small>
+                </h5>
+            </a>
+            <div class="text-muted d-block mb-1" style="min-height: 4em">
+                                    Адмін сайту
+                            </div>
+        </div>
+    </div>
+</div>
+                </div>
+
+                
+                <div id="comments" class="comments-area">
+    <h5 class="comments-title mb-0 border-bottom pb-1">
+        Коментарі (0)
+    </h5>
+
+    <ol class="comment-list" itemscope="" itemtype="http://schema.org/UserComments">
+            <h4 class="text-muted text-center mt-3" id="no-comments">
+            Ще немає коментарів
+        </h4>
+        </ol>
+</div>
+
+    <div class="text-center alert alert-light text-muted">
+        Щоб залишити коментар необхідно авторизуватися.
+        <p>
+            <a class="nav-link ajax-link" href="https://devzone.org.ua/login" rel="nofollow">
+                <i class="fa icon-login"></i> Вхід
+            </a>
+        </p>
+    </div>
+
+                
+            </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12 mt-2">
+                    <div class="mt-md-0 featured-font sticky-top sticky-sidebar-offset">
+                        <div class="section-title spanborder text-center">
+                            <h4>Схожі статті</h4>
+                        </div>
+                        <ol class="list-featured">
+                                                            <li class="mb-3">
+    <div>
+        <h6 class="font-weight-bold drow fs1">
+            <a href="https://devzone.org.ua/post/10-mov-prohramuvannia-shcho-kompiliuiutsia-v-javascript" class="text-gray-dark ajax-link">
+                10 мов програмування, що компілюються в JavaScript
+            </a>
+        </h6>
+        <p class="card-text text-opacity">
+            Браузер – платформа з фіксованим набором доступних технологій. JavaScript залиша...
+        </p>
+    </div>
+</li>
+                                                            <li class="mb-3">
+    <div>
+        <h6 class="font-weight-bold drow fs1">
+            <a href="https://devzone.org.ua/post/shcho-vam-potribno-znaty-pro-chysla-v-es6" class="text-gray-dark ajax-link">
+                Що вам потрібно знати про числа в ES6
+            </a>
+        </h6>
+        <p class="card-text text-opacity">
+            В порівнянні зі знайомим нам ES5, в стандарті ES6 було багато чого змінено. Ці з...
+        </p>
+    </div>
+</li>
+                                                            <li class="mb-3">
+    <div>
+        <h6 class="font-weight-bold drow fs1">
+            <a href="https://devzone.org.ua/post/osnovy-asynkhronnoho-prohramuvannia-na-javascript" class="text-gray-dark ajax-link">
+                Основи асинхронного програмування на JavaScript
+            </a>
+        </h6>
+        <p class="card-text text-opacity">
+            _В JavaScript нам часто доводиться мати справу з асинхронною поведінкою роботи к...
+        </p>
+    </div>
+</li>
+                                                            <li class="mb-3">
+    <div>
+        <h6 class="font-weight-bold drow fs1">
+            <a href="https://devzone.org.ua/post/top-10-nayposhyrenishykh-pomylok-javascript-ta-iak-yikh-unyknuty" class="text-gray-dark ajax-link">
+                Топ-10 найпоширеніших помилок JavaScript (та як їх уникнути)
+            </a>
+        </h6>
+        <p class="card-text text-opacity">
+            Щоб визначити десять найрозповсюдженіших помилок JavaScript, команда Rollbar пер...
+        </p>
+    </div>
+</li>
+                                                            <li class="mb-3">
+    <div>
+        <h6 class="font-weight-bold drow fs1">
+            <a href="https://devzone.org.ua/post/chomu-ia-nenavydzu-vykorystannia-auto-u-c" class="text-gray-dark ajax-link">
+                Чому я ненавиджу використання auto у C++
+            </a>
+        </h6>
+        <p class="card-text text-opacity">
+            Не знаю, як інші програмісти, але я під час читання коду намагаюсь фокусуватись...
+        </p>
+    </div>
+</li>
+                                                            <li class="mb-3">
+    <div>
+        <h6 class="font-weight-bold drow fs1">
+            <a href="https://devzone.org.ua/post/chomu-javascript-vidstiynyy" class="text-gray-dark ajax-link">
+                Чому JavaScript відстійний?
+            </a>
+        </h6>
+        <p class="card-text text-opacity">
+            Навіть якщо на перший погляд JavaScript видається хорошим рішенням для написання...
+        </p>
+    </div>
+</li>
+                                                            <li class="mb-3">
+    <div>
+        <h6 class="font-weight-bold drow fs1">
+            <a href="https://devzone.org.ua/post/iak-skasuvaty-asynkhronne-zavdannia-v-javascript" class="text-gray-dark ajax-link">
+                Як скасувати асинхронне завдання в JavaScript
+            </a>
+        </h6>
+        <p class="card-text text-opacity">
+            Обробка асинхронних завдань може бути проблемною, особливо якщо мова програмуван...
+        </p>
+    </div>
+</li>
+                                                            <li class="mb-3">
+    <div>
+        <h6 class="font-weight-bold drow fs1">
+            <a href="https://devzone.org.ua/post/sass-vs-less-vs-stylus-vybir-preprotsesora" class="text-gray-dark ajax-link">
+                Sass vs LESS vs Stylus: Вибір препроцесора
+            </a>
+        </h6>
+        <p class="card-text text-opacity">
+            Напевно багато з вас чули про CSS препроцесор. Писати код, використовуючи його п...
+        </p>
+    </div>
+</li>
+                                                    </ol>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+
+    </main>
+    <section class="row justify-content-center gh-subscribe mt-3 text-center subscribe-footer">
+    <div class="col-md-8 col-sm-12">
+		<div class="border p-5 bg-lightblue">
+			<div class="row justify-content-between align-items-center">
+				<div class="col-md-6 mb-2 mb-md-0">
+					<h5 class="font-weight-bold">Підписуйтесь на щотижневу розсилку</h5>
+					 Отримуйте найкращі статті тижня на пошту
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<form method="post" action="https://devzone.org.ua/subscribe" data-clear="1" class="wj-contact-form validate w-100 ajax-form">
+							<input type="hidden" name="_token" value="JssFBhemNBroJK4gDaFp4kV26hrVzdGYgxLNqGlz" autocomplete="off">                            
+                            <input type="hidden" name="_csrfs" value="111">
+							<div class="mc-field-group">
+								<input type="email" placeholder="name@example.com" name="email" class="required email form-control w-100" id="mce-EMAIL" autocomplete="on" required="">
+								<button type="submit" value="Subscribe" name="subscribe" class="heart btn btn-success btn-block w-100 mt-2">Підписатись</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+      </div>
+    
+</section>
+<div class="gh-subscribe text-center subscribe-footer subscribe-popup" id="subscribe-popup">
+    <a class="cancel-subscr float-right text-muted" href="https://devzone.org.ua/not-subscribe" rel="nofollow"><i class="fa icon-times"></i></a>
+    <p>Підписуйтесь на щотижневу розсилку</p>
+
+    <form method="post" class="subscribe" action="https://devzone.org.ua/subscribe" data-clear="1">
+        <input type="hidden" name="_token" value="JssFBhemNBroJK4gDaFp4kV26hrVzdGYgxLNqGlz" autocomplete="off">        
+        <input type="hidden" name="_csrfs" value="111">
+
+        <div class="form-group">
+            <input class="form-control subscribe-email" type="email" name="email" placeholder="name@example.com">
+        </div>
+        <button type="submit">Підписатись</button>
+    </form>
+                                        <a target="_blank" rel="nofollow" href="https://www.facebook.com/DevZoneUA" class="font-xl facebook-color"><i class="fa icon-facebook"></i></a>
+                                                                                                                                                    <a target="_blank" rel="nofollow" href="https://t.me/DevZoneOrgUA" class="font-xl telegram-color"><i class="fa icon-telegram"></i></a>
+                                                                    <a target="_blank" rel="nofollow" href="https://bsky.app/profile/devzone.org.ua" class="font-xl bluesky-color"><i class="fa icon-bluesky"></i></a>
+                                                <a target="_blank" rel="nofollow" href="https://mastodon.social/@DevZone" class="font-xl mastodon-color"><i class="fa icon-mastodon"></i></a>
+                                                <a target="_blank" rel="nofollow" href="https://devzone.org.ua/feed" class="font-xl rss-color"><i class="fa icon-rss"></i></a>
+                        </div>
+
+    <a href="https://devzone.org.ua/post/iak-vynykaiut-pomylky-v-obchyslenniakh-z-plavaiuchoiu-komoiu#" id="back-to-top" style="display: block;"><i class="fa icon-angle-up"></i></a>
+            <span id="loader" style="display: none;"><i class="icon-spinner"></i></span>
+    
+
+    <footer class="border-top p-3 text-muted small">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <span class="navbar-brand mr-2 mb-0"><strong>DevZone</strong></span>
+
+                                            <div class="follow-links">
+                            <b>Підписуйся</b>
+                                                                                                <a target="_blank" rel="nofollow" href="https://www.facebook.com/DevZoneUA" class="followlink facebook-color" title="Підписуйтесь на facebook"><i class="fa icon-facebook"></i></a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                            <a target="_blank" rel="nofollow" href="https://t.me/DevZoneOrgUA" class="followlink telegram-color" title="Підписуйтесь на telegram"><i class="fa icon-telegram"></i></a>
+                                                                                                                                                                                            <a target="_blank" rel="nofollow" href="https://bsky.app/profile/devzone.org.ua" class="followlink bluesky-color" title="Підписуйтесь на bluesky"><i class="fa icon-bluesky"></i></a>
+                                                                                                                                <a target="_blank" rel="nofollow" href="https://mastodon.social/@DevZone" class="followlink mastodon-color" title="Підписуйтесь на mastodon"><i class="fa icon-mastodon"></i></a>
+                                                                                                                                <a target="_blank" rel="nofollow" href="https://devzone.org.ua/feed" class="followlink rss-color" title="Підписуйтесь на rss"><i class="fa icon-rss"></i></a>
+                                                                                    </div>
+                    
+                </div>
+                <div class="col-md-3">
+                    <ul class="footer-nav">
+                                                    <li class="mb-1">
+                <a class="ajax-link" href="https://devzone.org.ua/qna" target="_self">
+                                        Q&amp;A
+                </a>
+            </li>
+                                            <li class="mb-1">
+                <a class="ajax-link" href="https://devzone.org.ua/topics" target="_self">
+                                        Теми
+                </a>
+            </li>
+                                            <li class="mb-1">
+                <a class="ajax-link" href="https://devzone.org.ua/comments" target="_self">
+                                        Коментарі
+                </a>
+            </li>
+                                            <li class="mb-1">
+                <a class="ajax-link" href="https://devzone.org.ua/tags" target="_self">
+                                        Теги
+                </a>
+            </li>
+                                            <li class="mb-1">
+                <a class="ajax-link" href="https://devzone.org.ua/members" target="_self">
+                                        Люди
+                </a>
+            </li>
+                                            </ul>
+
+                </div>
+                <div class="col-md-3">
+                    <ul class="footer-nav">
+                                <li class="mb-1">
+                <a class="ajax-link" href="https://devzone.org.ua/write" target="_self">
+                                            <i class="icon-feather" style="color:#517ce1"></i>
+                                        Написати статтю
+                </a>
+            </li>
+                                            <li class="mb-1">
+                <a class="ajax-link" href="https://devzone.org.ua/question/add" target="_self">
+                                            <i class="icon-help-circled" style="color:#e5be2e"></i>
+                                        Задати питання
+                </a>
+            </li>
+                                            <li class="mb-1">
+                <a class="ajax-link" href="https://devzone.org.ua/topics/add" target="_self">
+                                            <i class="icon-link-ext" style="color:#3dccd6"></i>
+                                        Створити тему
+                </a>
+            </li>
+                                            <li class="mb-1">
+                <a class="ajax-link" href="https://devzone.org.ua/recent" target="_self">
+                                        На модерації
+                </a>
+            </li>
+                        </ul>
+
+                </div>
+                <div class="col-md-3">
+                    <ul class="footer-nav">
+                                <li class="mb-1">
+                <a class="ajax-link" href="https://devzone.org.ua/contact" target="_self">
+                                        Контакти
+                </a>
+            </li>
+                                            <li class="mb-1">
+                <a class="ajax-link" href="https://devzone.org.ua/about" target="_self">
+                                        Про сайт
+                </a>
+            </li>
+                                            <li class="mb-1">
+                <a class="ajax-link" href="https://devzone.org.ua/dump" target="_self">
+                                        Дамп даних
+                </a>
+            </li>
+                        </ul>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d9e762f2ca70775',t:'MTc3MzEwNTI1Ng=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;" src="./Як виникають помилки в обчисленнях з рухомою комою_ _ DevZone_files/saved_resource.html"></iframe><script defer="" src="./Як виникають помилки в обчисленнях з рухомою комою_ _ DevZone_files/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;5b17eccc11294e48a4a27294a041c617&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+
+
+
+<div class="notyf"></div><div class="notyf-announcer" aria-atomic="true" aria-live="polite" style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; outline: 0px;"></div></body></html>
